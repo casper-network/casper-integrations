@@ -1,6 +1,19 @@
+# -----------------------------------------------------------
+# Retrieve JSON-RPC schema for discovery purposes.
+# -----------------------------------------------------------
 curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
     "method": "rpc.discover"
 }'
+
+# -----------------------------------------------------------
+# Retrieve JSON-RPC schema & display supported endpoints.
+# -----------------------------------------------------------
+curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
+--data-raw '{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "rpc.discover"
+}' | jq '.result.schema.methods[].name'

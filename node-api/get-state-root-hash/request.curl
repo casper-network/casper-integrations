@@ -1,11 +1,11 @@
 # -----------------------------------------------------------
-# Retrieve latest block.
+# Retrieve by latest block.
 # -----------------------------------------------------------
 curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "chain_get_block"
+    "method": "chain_get_state_root_hash"
 }'
 
 # -----------------------------------------------------------
@@ -15,10 +15,10 @@ curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "chain_get_block",
+    "method": "chain_get_state_root_hash",
     "params": {
         "block_identifier": {
-            "Hash": "53ef11dce09c54e58d8c3b14c75c188ce9f41a543a5e547097517838862e0a06"
+            "Hash": "12284e9e6b1c440ee91d2803850a7b7ba5e4c029c6f4abeb8aa1eb743608ab73"
         }
     }
 }'
@@ -30,7 +30,7 @@ curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "chain_get_block",
+    "method": "chain_get_state_root_hash",
     "params": {
         "block_identifier": {
             "Height": 505
