@@ -1,12 +1,13 @@
 # -----------------------------------------------------------
 # Retrieve node status over REST endpoint.
 # -----------------------------------------------------------
-curl --location -g --request GET '{{N1_ADDRESS_REST}}/status'
+curl --location --request GET 'http://3.136.227.9:8888/status'
 
 # -----------------------------------------------------------
 # Retrieve node status over JSON-RPC endpoint.
 # -----------------------------------------------------------
-curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
+curl --location --request POST 'http://3.136.227.9:7777/rpc' \
+--header 'Content-Type: application/json' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",

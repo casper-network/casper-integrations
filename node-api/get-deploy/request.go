@@ -17,7 +17,7 @@ func main() {
     "jsonrpc": "2.0",
     "method": "info_get_deploy",
     "params": {
-        "deploy_hash": "5db09c0275c4c1ba54ebcc69784ed767350bf9c2b0be7ab4fec1ca84acd1c47d"
+        "deploy_hash": "6c4048f8ebd40a160e9df47e73680eda8ae8430309a9566655bb357a5967276b"
     }
 }`)
 

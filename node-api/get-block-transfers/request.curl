@@ -1,24 +1,29 @@
 # -----------------------------------------------------------
-# Retrieve transfers of latest block.
+# Retrieve transfers of LATEST block.
 # -----------------------------------------------------------
-curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
+curl --location --request POST 'http://3.136.227.9:7777/rpc' \
+--header 'Content-Type: application/json' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "chain_get_block_transfers"
+    "method": "chain_get_block_transfers",
+    "params": {
+        "block_identifier": null
+    }
 }'
 
 # -----------------------------------------------------------
 # Retrieve transfers by block height.
 # -----------------------------------------------------------
-curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
+curl --location --request POST 'http://3.136.227.9:7777/rpc' \
+--header 'Content-Type: application/json' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
     "method": "chain_get_block_transfers",
     "params": {
         "block_identifier": {
-            "Hash": "e2800c21cb3c93b8e82fd348e044456f326bfbfce140bc00581800cce8a18fd4"
+            "Hash": "c7148e1e2e115d8fba357e04be2073d721847c982dc70d5c36b5f6d3cf66331c"
         }
     }
 }'
@@ -26,14 +31,15 @@ curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
 # -----------------------------------------------------------
 # Retrieve transfers by block hash.
 # -----------------------------------------------------------
-curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
+curl --location --request POST 'http://3.136.227.9:7777/rpc' \
+--header 'Content-Type: application/json' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
     "method": "chain_get_block_transfers",
     "params": {
         "block_identifier": {
-            "Hash": "e2800c21cb3c93b8e82fd348e044456f326bfbfce140bc00581800cce8a18fd4"
+            "Height": 20652
         }
     }
 }'

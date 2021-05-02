@@ -1,4 +1,4 @@
 # -----------------------------------------------------------
 # Retrieve node metrics over REST endpoint.
 # -----------------------------------------------------------
-curl --location -g --request GET '{{N1_ADDRESS_REST}}/metrics'
+curl --location --request GET 'http://3.136.227.9:8888/metrics'

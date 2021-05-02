@@ -13,7 +13,8 @@ curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
 # Retrieve era information by block hash.
 # NOTE - returns empty if block is not a switch block.
 # -----------------------------------------------------------
-curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
+curl --location --request POST 'http://3.136.227.9:7777/rpc' \
+--header 'Content-Type: application/json' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
@@ -29,7 +30,8 @@ curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
 # Retrieve era information by block height.
 # NOTE - returns empty if block is not a switch block.
 # -----------------------------------------------------------
-curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
+curl --location --request POST 'http://3.136.227.9:7777/rpc' \
+--header 'Content-Type: application/json' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
