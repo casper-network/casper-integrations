@@ -1,0 +1,42 @@
+# -----------------------------------------------------------
+# Retrieve era information of latest block.
+# NOTE - returns empty if latest block is not a switch block.
+# -----------------------------------------------------------
+curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
+--data-raw '{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "chain_get_era_info_by_switch_block"
+}'
+
+# -----------------------------------------------------------
+# Retrieve era information by block hash.
+# NOTE - returns empty if block is not a switch block.
+# -----------------------------------------------------------
+curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
+--data-raw '{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "chain_get_era_info_by_switch_block",
+    "params": {
+        "block_identifier": {
+            "Hash": "12284e9e6b1c440ee91d2803850a7b7ba5e4c029c6f4abeb8aa1eb743608ab73"
+        }
+    }
+}'
+
+# -----------------------------------------------------------
+# Retrieve era information by block height.
+# NOTE - returns empty if block is not a switch block.
+# -----------------------------------------------------------
+curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
+--data-raw '{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "chain_get_era_info_by_switch_block",
+    "params": {
+        "block_identifier": {
+            "Height": 505
+        }
+    }
+}'

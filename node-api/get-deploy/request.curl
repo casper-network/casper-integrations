@@ -1,0 +1,12 @@
+# -----------------------------------------------------------
+# Retrieve deploy by hash.
+# -----------------------------------------------------------
+curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
+--data-raw '{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "info_get_deploy",
+    "params": {
+        "deploy_hash": "5db09c0275c4c1ba54ebcc69784ed767350bf9c2b0be7ab4fec1ca84acd1c47d"
+    }
+}'
