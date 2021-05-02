@@ -1,7 +1,7 @@
 # -----------------------------------------------------------
 # Retrieve account balance by purse.
 # -----------------------------------------------------------
-curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
+curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
 --data-raw '{
   "id": 3337639689365824966,
   "jsonrpc": "2.0",

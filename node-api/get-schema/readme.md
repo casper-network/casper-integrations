@@ -1,4 +1,4 @@
-curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
+curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
