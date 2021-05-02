@@ -1,11 +1,39 @@
+# -----------------------------------------------------------
+# Retrieve transfers of latest block.
+# -----------------------------------------------------------
 curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "chain_get_block",
+    "method": "chain_get_block_transfers"
+}'
+
+# -----------------------------------------------------------
+# Retrieve transfers by block height.
+# -----------------------------------------------------------
+curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
+--data-raw '{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "chain_get_block_transfers",
     "params": {
         "block_identifier": {
-            "Hash": "53ef11dce09c54e58d8c3b14c75c188ce9f41a543a5e547097517838862e0a06"
+            "Hash": "e2800c21cb3c93b8e82fd348e044456f326bfbfce140bc00581800cce8a18fd4"
+        }
+    }
+}'
+
+# -----------------------------------------------------------
+# Retrieve transfers by block hash.
+# -----------------------------------------------------------
+curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
+--data-raw '{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "chain_get_block_transfers",
+    "params": {
+        "block_identifier": {
+            "Hash": "e2800c21cb3c93b8e82fd348e044456f326bfbfce140bc00581800cce8a18fd4"
         }
     }
 }'
