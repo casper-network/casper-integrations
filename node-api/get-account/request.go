@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-        url := "3.14.161.135:7777/rpc"
+        url := "3.136.227.9:7777/rpc"
         method := "POST"
 
         payload := strings.NewReader(`{

@@ -6,7 +6,7 @@ import pycspr
 
 
 # An adddress associated with a casper test-net node.
-_NODE_ADDRESS = os.getenv("CASPER_NODE_ADDRESS", "3.14.161.135")
+_NODE_ADDRESS = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
 
 # Initialise pycspr.
 pycspr.initialise(
