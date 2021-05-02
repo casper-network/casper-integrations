@@ -1,1 +1,15 @@
+# -----------------------------------------------------------
+# Retrieve node status over REST endpoint.
+# -----------------------------------------------------------
 curl --location -g --request GET '{{N1_ADDRESS_REST}}/status'
+
+# -----------------------------------------------------------
+# Retrieve node status over JSON-RPC endpoint.
+# -----------------------------------------------------------
+curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
+--data-raw '{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "info_get_status",
+    "params": []
+}'
