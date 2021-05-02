@@ -17,8 +17,8 @@ func main() {
   "jsonrpc": "2.0",
   "method": "state_get_balance",
   "params": {
-    "purse_uref": "uref-5fe1502c686f888698498625f17cf66531783bda4c154f4b96fe21f8b6b01e38-007",
-    "state_root_hash": "64b04da6e408198ded926eeba8b3de8e1d7e3040236e2a9f306e414e617120e0"
+    "purse_uref": "uref-b3a323e529dc59f3a1042ea89e60a66ecd8fc9ee0991398d7760e24e72b2f49d-007",
+    "state_root_hash": "33e257bc70f7094d030a18f8aede3d58d8e202fb946810ce3292625fe853b636"
   }
 }
 `)

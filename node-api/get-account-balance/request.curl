@@ -8,7 +8,7 @@ curl --location -g --request POST '3.136.227.9:7777/rpc' \
   "jsonrpc": "2.0",
   "method": "state_get_balance",
   "params": {
-    "purse_uref": "uref-ec194382eb902525cd4b451ceeb0d203c8521f3e664d984250ca26705b56ef6e-007",
+    "purse_uref": "uref-b3a323e529dc59f3a1042ea89e60a66ecd8fc9ee0991398d7760e24e72b2f49d-007",
     "state_root_hash": "33e257bc70f7094d030a18f8aede3d58d8e202fb946810ce3292625fe853b636"
   }
 }
