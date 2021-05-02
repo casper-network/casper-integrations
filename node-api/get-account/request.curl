@@ -8,8 +8,8 @@ curl --location -g --request POST '3.136.227.9:7777/rpc' \
     "jsonrpc": "2.0",
     "method": "state_get_item",
     "params": {
-        "state_root_hash": "c5dde8cdc701739619a37472abe43d65c672107415df70275d9b2b9fde294e72",
-        "key": "account-hash-49ade8ee1c4a54c7c799846ac5ace380134c3996f2ff28b4617cb8ccc4fde058",
+        "state_root_hash": "33e257bc70f7094d030a18f8aede3d58d8e202fb946810ce3292625fe853b636",
+        "key": "account-hash-21e8cee83ced9ff174357dc5d9b797f259994354993f01e18db49cda2a7700b3",
         "path": []
     }
 }'
