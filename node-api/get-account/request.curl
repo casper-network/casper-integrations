@@ -1,0 +1,15 @@
+# -----------------------------------------------------------
+# Retrieve account information by account hash.
+# -----------------------------------------------------------
+curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
+--data-raw '{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "state_get_item",
+    "params": 
+        {
+            "state_root_hash": "64b04da6e408198ded926eeba8b3de8e1d7e3040236e2a9f306e414e617120e0",
+            "key": "account-hash-199ff66a6797f97667340405f4e91269d40a7597a04a86fcbdf478b3eba38eda",
+            "path": []
+        }
+}'
