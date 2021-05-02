@@ -1,0 +1,10 @@
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "chain_get_block",
+    "params": {
+        "block_identifier": {
+            "Height": 505
+        }
+    }
+}
