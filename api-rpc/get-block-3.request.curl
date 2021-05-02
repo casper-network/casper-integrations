@@ -5,7 +5,7 @@ curl --location -g --request POST '{{N1_ADDRESS_RPC}}' \
     "method": "chain_get_block",
     "params": {
         "block_identifier": {
-            "Height": 505
+            "Hash": "53ef11dce09c54e58d8c3b14c75c188ce9f41a543a5e547097517838862e0a06"
         }
     }
 }'
