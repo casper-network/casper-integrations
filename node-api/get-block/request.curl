@@ -1,24 +1,28 @@
 # -----------------------------------------------------------
 # Retrieve latest block.
 # -----------------------------------------------------------
-curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
+curl --location --request POST 'http://3.14.161.135:7777/rpc' \
+--header 'Content-Type: application/json' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "chain_get_block"
+    "method": "chain_get_block",
+    "params": {
+        "block_identifier": null
+    }
 }'
 
 # -----------------------------------------------------------
 # Retrieve by block hash.
 # -----------------------------------------------------------
-curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
+curl --location -g --request POST 'http://3.14.161.135:7777/rpc' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
     "method": "chain_get_block",
     "params": {
         "block_identifier": {
-            "Hash": "53ef11dce09c54e58d8c3b14c75c188ce9f41a543a5e547097517838862e0a06"
+            "Hash": "ad456daa6df2c789e6e650a87ceb6fbd40bafbaa67d59838be0c6cbb0c0be035"
         }
     }
 }'
@@ -26,14 +30,14 @@ curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
 # -----------------------------------------------------------
 # Retrieve by block height.
 # -----------------------------------------------------------
-curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
+curl --location -g --request POST 'http://3.14.161.135:7777/rpc' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
     "method": "chain_get_block",
     "params": {
         "block_identifier": {
-            "Height": 505
+            "Height": 41245
         }
     }
 }'

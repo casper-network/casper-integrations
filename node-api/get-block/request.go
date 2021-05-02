@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-        url := "http://3.136.227.9:7777/rpc"
+        url := "http://3.14.161.135:7777/rpc"
         method := "POST"
 
         payload := strings.NewReader(`{
@@ -18,7 +18,7 @@ func main() {
     "method": "chain_get_block",
     "params": {
         "block_identifier": {
-            "Hash": "12284e9e6b1c440ee91d2803850a7b7ba5e4c029c6f4abeb8aa1eb743608ab73"
+            "Hash": "307b88199a20e2e545da07542fff080549fea8924650ea9ec608ebcf46e9a51f"
         }
     }
 }`)

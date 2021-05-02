@@ -6,7 +6,7 @@ curl --location -g --request GET '{{N1_ADDRESS_REST}}/status'
 # -----------------------------------------------------------
 # Retrieve node status over JSON-RPC endpoint.
 # -----------------------------------------------------------
-curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
+curl --location -g --request POST 'http://3.14.161.135:7777/rpc' \
 --data-raw '{
     "id": 1,
     "jsonrpc": "2.0",
