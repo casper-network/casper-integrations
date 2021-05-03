@@ -2,7 +2,7 @@
 
 ## Overview
 
-Like most blockchain systems the Casper node software batches sets of transactions into **blocks** for subsequent execution.  
+Like most blockchain systems the Casper node software batches sets of transactions into **blocks**.  
 
 A block consists of: 
 
@@ -10,9 +10,9 @@ A block consists of:
 
 - a **header** containing information such as height, timestamp, protocol_version ...etc;
 
-- a **body** containing the public key of the node that proposed the block plus sets of transactions hashes (transfers & deploys);
+- a **body** containing the public key of the validator that proposed the block plus a set of transactions hashes;
 
-- a **set** of proofs representing validator signatures attesting to the validity of the block; 
+- a set of **proofs** representing validator signatures attesting to the validity of the block; 
 
 The lifetime of a block is as follows:
 
