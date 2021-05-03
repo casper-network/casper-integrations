@@ -10,11 +10,11 @@ The JSON-RPC API exposes the **chain_get_era_info_by_switch_block** endpoint.  I
 
 **block_identifier**
 
-- if set to null, then the current switch block is returned;
+- if set to null, the returned era information relates to the most recent switch block;
 
-- if set to a hash, then the chain's database is searched for a switch block with a matching hash;
+- if set to a hash, the returned era information relates to a switch block with a matching hash;
 
-- if set to an integer, then the chain's database is searched for a switch block with a matching height;
+- if set to an integer, the returned era information relates to a switch block with a matching height;
 
 ## NOTES
 
