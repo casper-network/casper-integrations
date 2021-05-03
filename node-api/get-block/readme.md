@@ -24,9 +24,7 @@ The lifetime of a block is as follows:
 
 ## JSON-RPC
 
-The JSON-RPC API exposes the **chain_get_block** endpoint.
-
-The chain_get_block endpoint accepts the following parameters:
+The JSON-RPC API exposes the **chain_get_block** endpoint.  It accepts the following parameters:
 
 **block_identifier**
 
