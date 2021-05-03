@@ -1,6 +1,9 @@
-curl --location -g --request POST 'http://3.136.227.9:7777/rpc' \
---data-raw '{
-    "id": 1,
-    "jsonrpc": "2.0",
-    "method": "rpc.discover"
-}'
+# get-rpc-schema
+
+## Overview
+
+Each node exposes the JSON-RPC API schema in machine readable format.  Within the schema each endpoint is defined with examples.
+
+## JSON-RPC
+
+The JSON-RPC API exposes the **rpc.discover** endpoint.
