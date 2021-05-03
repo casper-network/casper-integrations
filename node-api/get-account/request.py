@@ -14,7 +14,7 @@ _ACCOUNT_HASH = "21e8cee83ced9ff174357dc5d9b797f259994354993f01e18db49cda2a7700b
 # A known state of the linear block chain at which to query.
 _STATE_ROOT_HASH = "33e257bc70f7094d030a18f8aede3d58d8e202fb946810ce3292625fe853b636"
 
-# An adddress associated with a casper test-net node.
+# A known casper test-net node address.
 _NODE_ADDRESS = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
 
 # Initialise pycspr.

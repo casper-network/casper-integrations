@@ -11,7 +11,7 @@ _BLOCK_HASH = "12284e9e6b1c440ee91d2803850a7b7ba5e4c029c6f4abeb8aa1eb743608ab73"
 # A known block height.
 _BLOCK_HEIGHT = 505
 
-# An adddress associated with a casper test-net node.
+# A known casper test-net node address.
 _NODE_ADDRESS = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
 
 # Initialise pycspr.

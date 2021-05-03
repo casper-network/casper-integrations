@@ -8,7 +8,7 @@ import pycspr
 # A known deploy hash.
 _DEPLOY_HASH = "6c4048f8ebd40a160e9df47e73680eda8ae8430309a9566655bb357a5967276b"
 
-# An adddress associated with a casper test-net node.
+# A known casper test-net node address.
 _NODE_ADDRESS = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
 
 # Initialise pycspr.
