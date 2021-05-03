@@ -5,12 +5,6 @@ import pycspr
 
 
 
-# A known block hash.
-_BLOCK_HASH = "12284e9e6b1c440ee91d2803850a7b7ba5e4c029c6f4abeb8aa1eb743608ab73"
-
-# A known block height.
-_BLOCK_HEIGHT = 505
-
 # A known casper test-net node address.
 _NODE_ADDRESS = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
 
@@ -18,6 +12,13 @@ _NODE_ADDRESS = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
 pycspr.initialise(
     pycspr.NodeConnectionInfo(host=_NODE_ADDRESS, port_rest=8888, port_rpc=7777, port_sse=9999)
 )
+
+# A known block hash.
+_BLOCK_HASH = "12284e9e6b1c440ee91d2803850a7b7ba5e4c029c6f4abeb8aa1eb743608ab73"
+
+# A known block height.
+_BLOCK_HEIGHT = 505
+
 
 
 def main():
@@ -37,6 +38,7 @@ def main():
     print(f"QUERIED TEST-NET NODE {pycspr.CONNECTION}")
     print("-----------------------------------------------------------------------------------------------------")
     print(f"Era information = {json.dumps(era_info_1, indent=4)}")
+    print("-----------------------------------------------------------------------------------------------------")
 
 
 if __name__ == "__main__":

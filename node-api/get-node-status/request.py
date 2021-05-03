@@ -18,12 +18,15 @@ def main():
     """Retrieves node status information.
     
     """
+    # Get node status.
     status = pycspr.get_node_status()
     
     print("-----------------------------------------------------------------------------------------------------")
     print(f"QUERIED TEST-NET NODE {pycspr.CONNECTION}")
     print("-----------------------------------------------------------------------------------------------------")
     print(f"{json.dumps(status, indent=4)}")
+    print("-----------------------------------------------------------------------------------------------------")
+
 
 if __name__ == "__main__":
     try:

@@ -25,6 +25,7 @@ def main():
     print(f"QUERIED TEST-NET NODE {pycspr.CONNECTION}")
     print("-----------------------------------------------------------------------------------------------------")
     print(f"Auction information = {json.dumps(auction_info, indent=4)}")
+    print("-----------------------------------------------------------------------------------------------------")
 
 
 if __name__ == "__main__":

@@ -5,9 +5,6 @@ import pycspr
 
 
 
-# A known deploy hash.
-_DEPLOY_HASH = "6c4048f8ebd40a160e9df47e73680eda8ae8430309a9566655bb357a5967276b"
-
 # A known casper test-net node address.
 _NODE_ADDRESS = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
 
@@ -15,6 +12,9 @@ _NODE_ADDRESS = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
 pycspr.initialise(
     pycspr.NodeConnectionInfo(host=_NODE_ADDRESS, port_rest=8888, port_rpc=7777, port_sse=9999)
 )
+
+# A known deploy hash.
+_DEPLOY_HASH = "6c4048f8ebd40a160e9df47e73680eda8ae8430309a9566655bb357a5967276b"
 
 
 def main():
@@ -28,6 +28,7 @@ def main():
     print(f"QUERIED TEST-NET NODE {pycspr.CONNECTION}")
     print("-----------------------------------------------------------------------------------------------------")
     print(f"Deploy information = {json.dumps(deploy_info, indent=4)}")
+    print("-----------------------------------------------------------------------------------------------------")
 
 
 if __name__ == "__main__":

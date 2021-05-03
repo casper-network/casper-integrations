@@ -18,12 +18,14 @@ def main():
     """Retrieve node JSON-RPC schema information.
     
     """
+    # Get RPC schema.
     schema = pycspr.get_rpc_schema()
     
     print("-----------------------------------------------------------------------------------------------------")
     print(f"QUERIED TEST-NET NODE {pycspr.CONNECTION}")
     print("-----------------------------------------------------------------------------------------------------")
     print(f"{json.dumps(schema, indent=4)}")
+    print("-----------------------------------------------------------------------------------------------------")
 
 
 if __name__ == "__main__":
