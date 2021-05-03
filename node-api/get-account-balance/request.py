@@ -9,7 +9,7 @@ import pycspr
 _ACCOUNT_KEY = "01cb99ab80325d73552c7c0b8d10d8cb2d19116b1f233431751fe82f9c25db51c1"
 
 # An on-chain account hash.
-_ACCOUNT_HASH = "21e8cee83ced9ff174357dc5d9b797f259994354993f01e18db49cda2a7700b3"
+_ACCOUNT_HASH = pycspr.get_account_hash(_ACCOUNT_KEY)
 
 # A known state of the linear block chain at which to query.
 _STATE_ROOT_HASH = "33e257bc70f7094d030a18f8aede3d58d8e202fb946810ce3292625fe853b636"
@@ -27,9 +27,6 @@ def main():
     """Retrieves on-chain account balance.
     
     """
-    # Verify mapping of account key -> account hash.
-    assert _ACCOUNT_HASH == pycspr.get_account_hash(_ACCOUNT_KEY)
-
     # Set purse.
     purse_uref = pycspr.get_account_main_purse_uref(_ACCOUNT_KEY, _STATE_ROOT_HASH)
 
