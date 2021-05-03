@@ -6,7 +6,9 @@ Each on-chain Casper account is associated with a **purse** that holds the accou
 
 Purses are created by the **system mint** upon account initialisation.
 
-Each purse has a **system allocated** unique identifier, e.g. uref-b3a323e529dc59f3a1042ea89e60a66ecd8fc9ee0991398d7760e24e72b2f49d-007. 
+Each purse has a system allocated **unique identifier**:
+
+- e.g. uref-b3a323e529dc59f3a1042ea89e60a66ecd8fc9ee0991398d7760e24e72b2f49d-007. 
 
 ## JSON-RPC
 
