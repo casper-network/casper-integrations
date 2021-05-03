@@ -2,7 +2,7 @@
 
 ## Overview
 
-In the Casper blockchain system the underlying consensus process proceeds in a linear sequence of **eras**.  At the end of each era a special block is produced by the chain, this block is called the **switch block**.  The switch block contains era specific information of special interest to validators.
+In the Casper blockchain system the underlying consensus process proceeds in a linear sequence of **eras**.  At the end of each era a special block is produced by the chain, this block is called the **switch block**.  The switch block contains CSPR token reward information of special interest to validators.
 
 ## JSON-RPC
 
