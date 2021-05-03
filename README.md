@@ -1,10 +1,10 @@
-casper-integration-assets
+casper-integrations
 ===============
 
 Various technical assets in support of CSPR node integrations.
 
 
-What is casper-integration-assets ?
+What is casper-integrations ?
 --------------------------------------
 
 - JSON-RPC, REST & SSE node api documentation & example code;
@@ -14,13 +14,13 @@ What is casper-integration-assets ?
 - links to technical articles and the such like;
 
 
-Why casper-integration-assets ?
+Why casper-integrations ?
 --------------------------------------
 
 There is a significant requirement to streamline CSPR network integrations by exchanges, wallets, validators ...etc.  It's goal is to streamline client side experience of interacting with a casper node.
 
 
-Who uses casper-integration-assets ?
+Who uses casper-integrations ?
 --------------------------------------
 
 Integration software engineers.  Validators.  Testers.
