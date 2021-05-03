@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# Retrieve account balance by purse.
+# Retrieve summary information of transfers included in either the latest or a known block.
 # -----------------------------------------------------------
 
 # NOTE: $CASPER_CLIENT = path to compiled casper-client binary.

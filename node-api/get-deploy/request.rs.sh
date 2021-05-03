@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# Retrieve account balance by purse.
+# Retrieve deploy information.
 # -----------------------------------------------------------
 
 # NOTE: $CASPER_CLIENT = path to compiled casper-client binary.
