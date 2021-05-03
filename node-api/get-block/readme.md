@@ -16,11 +16,11 @@ A block consists of:
 
 The lifetime of a block is as follows:
 
-- 1. the **lead validator** in the current consensus round **creates** a block;
+1. the **lead validator** in the current consensus round **creates** a block;
 
-- 2. the lead validator **gossips** the block to the other validators for **finalisation**;
+2. the lead validator **gossips** the block to the other validators for **finalisation**;
 
-- 3. once the block is deemed finalised it is **executed** by each node;
+3. once the block is deemed finalised it is **executed** by each node;
 
 ## JSON-RPC
 
