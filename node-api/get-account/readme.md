@@ -1,4 +1,4 @@
-# get-block
+# get-account
 
 ## Overview
 
@@ -14,7 +14,7 @@ The lifetime of a Casper account is as follows:
 
 - initialise the on-chain account's main purse with X CSPR tokens;
 
-The user's public key is mapped to a unique identifier known as the **Account Hash**.  This identifier is used to query the chain for account information.
+The user's public key is mapped to a unique identifier known as the **Account Hash**.  The account hash is used to query the chain for account information.
 
 ## JSON-RPC
 
