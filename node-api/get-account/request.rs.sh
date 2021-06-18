@@ -27,4 +27,4 @@ _ACCOUNT=$(
         --key "$_ACCOUNT_KEY"
     )
 
-echo _ACCOUNT | jq '.result'
+echo "$_ACCOUNT" | jq '.result'
