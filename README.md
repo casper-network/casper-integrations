@@ -29,4 +29,4 @@ Integration software engineers.  Validators.  Testers.
 How to run request examples ?
 --------------------------------------
 
-For `casper-js-sdk` just run `npm install capser-js-sdk` inside `node-api/`, then `node request.js` in relevant directory.
+For `casper-js-sdk` just run `npm install` in root directory, then `node request.js` in `./node-api/<example-name>`.
