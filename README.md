@@ -25,3 +25,8 @@ Who uses casper-integrations ?
 
 Integration software engineers.  Validators.  Testers.
 
+
+How to run request examples ?
+--------------------------------------
+
+For `casper-js-sdk` just run `npm install capser-js-sdk` inside `node-api/`, then `node request.js` in relevant directory.
