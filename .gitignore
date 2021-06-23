@@ -12,3 +12,7 @@ Cargo.lock
 # Node.js releated files
 node_modules
 package-lock.json
+
+# Use case 1.
+use-cases/ucase-1-document-notarisation/outputs
+use-cases/ucase-1-document-notarisation/tmp
