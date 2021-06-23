@@ -14,3 +14,4 @@ curl --location --request POST 'http://3.136.227.9:7777/rpc' \
     "method": "info_get_status",
     "params": []
 }'
+

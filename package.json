@@ -1,0 +1,17 @@
+{
+  "name": "casper-integrations",
+  "version": "1.0.0",
+  "description": "casper-integrations ===============",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/casper-network/casper-integrations.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/casper-network/casper-integrations/issues"
+  },
+  "homepage": "https://github.com/casper-network/casper-integrations#readme",
+  "dependencies": {
+    "casper-js-sdk": "^2.0.0"
+  }
+}
