@@ -3,7 +3,6 @@
  */
 
 import * as fs from 'fs';
-import * as sleep from 'sleep';
 import { 
     CasperClient,
     CLValueBuilder,
