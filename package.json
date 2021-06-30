@@ -12,6 +12,11 @@
   },
   "homepage": "https://github.com/casper-network/casper-integrations#readme",
   "dependencies": {
-    "casper-js-sdk": "^2.0.0"
+    "casper-js-sdk": "^2.0.0",
+    "esm": "^3.2.25",
+    "sleep": "^6.3.0"
+  },
+  "scripts": {
+    "erc20-install": "node -r esm -e 'require(\"./contracts/erc20/install.js\")'"
   }
 }
