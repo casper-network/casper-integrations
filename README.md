@@ -28,7 +28,24 @@ Who uses casper-integrations ?
 Software engineers.  Validators.  Testers.
 
 
-How to run request.js examples ?
+How to run Javascript examples ?
 --------------------------------------
 
-For `casper-js-sdk` just run `npm install` in root directory, then `node request.js` in `./node-api/<example-name>`.
+1.  Setup:
+
+```
+cd YOUR_WORKING_DIRECTORY/casper-integrations
+npm install
+```
+
+2.  Run node-api example:
+
+```
+node YOUR_WORKING_DIRECTORY/casper-integrations/node-api/<example-name>/request.js
+```
+
+3.  Run erc20 example:
+
+```
+node YOUR_WORKING_DIRECTORY/casper-integrations/contracts/erc20/<script-name>.js
+```
