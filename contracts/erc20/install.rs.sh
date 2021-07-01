@@ -27,7 +27,6 @@ function _main()
     local TOKEN_SUPPLY=${5}
     local TOKEN_DECIMALS=${6}
 
-    # Validate inputs.
     if [ ! -f "$PATH_TO_CONTRACT" ]; then
         echo "ERROR: Invalid erc20.wasm file path."
         return
@@ -37,14 +36,13 @@ function _main()
         return
     fi
 
-    # Dispatch deploy.
     local DEPLOY_HASH=$(
         $CASPER_CLIENT put-deploy \
             --chain-name "$_DEPLOY_CHAIN_NAME" \
             --gas-price "$_DEPLOY_GAS_PRICE" \
             --node-address "$_DEPLOY_NODE_ADDRESS" \
             --payment-amount "$_DEPLOY_GAS_PAYMENT" \
-            --ttl "$DEPLOY_TTL" \
+            --ttl "$_DEPLOY_TTL" \
             --secret-key "$PATH_TO_SECRET_KEY" \
             --session-path "$PATH_TO_CONTRACT" \
             --session-arg "token_decimals:U8='$TOKEN_DECIMALS'" \
