@@ -2,20 +2,20 @@
  * @fileOverview CSPR JS SDK demo: ERC20 - view contract balances.
  */
 
- import * as _ from 'lodash';
- import { 
-     CasperClient,
-     Keys,
- } from 'casper-js-sdk';
+import * as _ from 'lodash';
+import { 
+    CasperClient,
+    Keys,
+} from 'casper-js-sdk';
  
- // Paths.
- const PATH_TO_NCTL = process.env.NCTL;
- const PATH_TO_KEYS = `${PATH_TO_NCTL}/assets/net-1/faucet`;
- const PATH_TO_USERS = `${PATH_TO_NCTL}/assets/net-1/users`;
- 
- // Deploy parameters - assumes NCTL network.
- const DEPLOY_NODE_ADDRESS="http://localhost:11101/rpc";
- 
+// Paths.
+const PATH_TO_NCTL = process.env.NCTL;
+const PATH_TO_CONTRACT_KEYS = `${PATH_TO_NCTL}/assets/net-1/faucet`;
+const PATH_TO_USERS = `${PATH_TO_NCTL}/assets/net-1/users`;
+
+// Deploy parameters - assumes NCTL network.
+const DEPLOY_NODE_ADDRESS="http://localhost:11101/rpc";
+
  
 /**
  * Demonstration entry point.
@@ -26,8 +26,8 @@ const main = async () => {
 
     // Step 2: Set contract operator key pair.
     const contractKeyPair = Keys.Ed25519.parseKeyFiles(
-        `${PATH_TO_KEYS}/public_key.pem`,
-        `${PATH_TO_KEYS}/secret_key.pem`
+        `${PATH_TO_CONTRACT_KEYS}/public_key.pem`,
+        `${PATH_TO_CONTRACT_KEYS}/secret_key.pem`
         );    
 
     // Step 3: Set global state root hash against which to issue queries.

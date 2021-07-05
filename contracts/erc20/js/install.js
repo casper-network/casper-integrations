@@ -14,7 +14,7 @@ import {
 // Paths.
 const PATH_TO_NCTL = process.env.NCTL;
 const PATH_TO_CONTRACT = `${PATH_TO_NCTL}/assets/net-1/bin/eco/erc20.wasm`;
-const PATH_TO_KEYS = `${PATH_TO_NCTL}/assets/net-1/faucet`;
+const PATH_TO_CONTRACT_KEYS = `${PATH_TO_NCTL}/assets/net-1/faucet`;
 
 // Deploy parameters - assumes NCTL network.
 const DEPLOY_CHAIN_NAME="casper-net-1";
@@ -37,15 +37,15 @@ const main = async () => {
     const client = new CasperClient(DEPLOY_NODE_ADDRESS);
 
     // Step 2: Set contract operator key pair.
-    const keyPair = Keys.Ed25519.parseKeyFiles(
-        `${PATH_TO_KEYS}/public_key.pem`,
-        `${PATH_TO_KEYS}/secret_key.pem`
+    const contractKeyPair = Keys.Ed25519.parseKeyFiles(
+        `${PATH_TO_CONTRACT_KEYS}/public_key.pem`,
+        `${PATH_TO_CONTRACT_KEYS}/secret_key.pem`
         );    
 
     // Step 3: Set contract installation deploy (unsigned).
     let deploy = DeployUtil.makeDeploy(
         new DeployUtil.DeployParams(
-            keyPair.publicKey,
+            contractKeyPair.publicKey,
             DEPLOY_CHAIN_NAME,
             DEPLOY_GAS_PRICE,
             DEPLOY_TTL_MS
@@ -63,7 +63,7 @@ const main = async () => {
     );
 
     // Step 4: Sign deploy.
-    deploy = client.signDeploy(deploy, keyPair); 
+    deploy = client.signDeploy(deploy, contractKeyPair); 
 
     // Step 5: Dispatch deploy to node.
     const deployHash = await client.putDeploy(deploy);
@@ -88,7 +88,7 @@ const logDetails = (deployHash) => {
     console.log(`
 ---------------------------------------------------------------------
 installed contract -> ERC20
-... account = ${PATH_TO_KEYS}
+... account = ${PATH_TO_CONTRACT_KEYS}
 ... deploy chain = ${DEPLOY_CHAIN_NAME}
 ... deploy dispatch node = ${DEPLOY_NODE_ADDRESS}
 ... deploy gas payment = ${DEPLOY_GAS_PAYMENT}

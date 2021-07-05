@@ -10,7 +10,7 @@ import {
 
 // Paths.
 const PATH_TO_NCTL = process.env.NCTL;
-const PATH_TO_KEYS = `${PATH_TO_NCTL}/assets/net-1/faucet`;
+const PATH_TO_CONTRACT_KEYS = `${PATH_TO_NCTL}/assets/net-1/faucet`;
 
 // Deploy parameters - assumes NCTL network.
 const DEPLOY_NODE_ADDRESS="http://localhost:11101/rpc";
@@ -24,16 +24,16 @@ const main = async () => {
     const client = new CasperClient(DEPLOY_NODE_ADDRESS);
 
     // Step 2: Set contract operator key pair.
-    const keyPair = Keys.Ed25519.parseKeyFiles(
-        `${PATH_TO_KEYS}/public_key.pem`,
-        `${PATH_TO_KEYS}/secret_key.pem`
+    const contractKeyPair = Keys.Ed25519.parseKeyFiles(
+        `${PATH_TO_CONTRACT_KEYS}/public_key.pem`,
+        `${PATH_TO_CONTRACT_KEYS}/secret_key.pem`
         );    
 
     // Step 3: Get global state root hash against which to issue queries.
     const stateRootHash = await getStateRootHash(client);
 
     // Step 4: Get hash of installed contract - should be cached.
-    const contractHash = await getContractHash(client, stateRootHash, keyPair);
+    const contractHash = await getContractHash(client, stateRootHash, contractKeyPair);
 
     // Step 5: Get on-chain token information.
     console.log({
