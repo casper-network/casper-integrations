@@ -34,7 +34,8 @@ const AMOUNT_TO_APPROVE = 1000000000;
 
     // Step 5: Invoke contract approve endpoint.
     const deployHashes = [];
-    for (const userKeyPair of utils.getKeyPairOfUserSet(constants.PATH_TO_USERS)) {
+    const userKeyPairSet = utils.getKeyPairOfUserSet(constants.PATH_TO_USERS);
+    for (const userKeyPair of userKeyPairSet) {
         // Step 5.1: Set deploy.
         let deploy = DeployUtil.makeDeploy(
             new DeployUtil.DeployParams(
