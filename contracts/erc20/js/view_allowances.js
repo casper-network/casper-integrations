@@ -2,7 +2,7 @@
  * @fileOverview CSPR JS SDK demo: ERC20 - view contract balances.
  */
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { 
     CasperClient,
     Keys,
@@ -15,7 +15,7 @@ const PATH_TO_USERS = `${process.env.NCTL}/assets/net-1/users`;
 // Deploy parameters - assumes NCTL network.
 const DEPLOY_NODE_ADDRESS="http://localhost:11101/rpc";
 
- 
+
 /**
  * Demonstration entry point.
  */
@@ -35,12 +35,14 @@ const main = async () => {
     // Step 4: Set contract hash - should be cached upon installation.
     const contractHash = await getContractHash(client, stateRootHash, contractKeyPair);
 
-    // Step 5: Render token balances.
-    logBalances(
+    // Step 5: Set token symbol.
+    const tokenSymbol = await getStateKeyValue(client, stateRootHash, contractHash, "symbol")
+
+    // Step 6: Render token approvals.
+    logApprovals(
         contractHash,
-        await getStateKeyValue(client, stateRootHash, contractHash, "symbol"),
-        await getTokenBalance(client, stateRootHash, contractHash, contractKeyPair),
-        await getTokenBalanceOfUserSet(client, stateRootHash, contractHash)
+        tokenSymbol,
+        await getTokenAllowanceOfUserSet(client, stateRootHash, contractHash, contractKeyPair)
     )
 };
 
@@ -49,18 +51,17 @@ const main = async () => {
  * @param {String} contractHash - On chain contract identifer.
  * @param {String} tokenSymbol - Symbol of installed ERC-20 token.
  * @param {Number} balanceOfAvailableSupply - Currently available ERC-20 token supply.
- * @param {Array} balanceOfUsers - Set of user ERC-20 token balances.
+ * @param {Array} approvalOfUsers - Set of user ERC-20 token balances.
  */
-const logBalances = (contractHash, tokenSymbol, balanceOfAvailableSupply, balanceOfUsers) => {
+const logApprovals = (contractHash, tokenSymbol, approvalOfUsers) => {
     console.log(`
 ---------------------------------------------------------------------
 ERC-20 ${tokenSymbol} contract:
 ---------------------------------------------------------------------
 ... contract hash = ${contractHash}
-... token balances:
-... ... available supply: ${balanceOfAvailableSupply}`);
+... contract to user account approvals:`);
     for (const userID of _.range(10)) {
-        console.log(`... ... user ${userID + 1}: ${balanceOfUsers[userID]}`)
+        console.log(`... ... user ${userID + 1}: ${approvalOfUsers[userID]}`)
     }
 };
 
@@ -175,22 +176,24 @@ const getKeyPairOfUserSet = () => {
  * @param {Object} keyPair - Assymmetric keys of an on-chain account.
  * @return {Object} ERC-20 contract token balance.
  */
-const getTokenBalance = async (client, stateRootHash, contractHash, keyPair) => {
-    const accountHash = Buffer.from(keyPair.accountHash()).toString('hex'); 
-    const balanceKey = `balances_${accountHash}`
+const getTokenAllowance = async (client, stateRootHash, contractHash, cp1KeyPair, cp2KeyPair) => {
+    stateRootHash = stateRootHash || await getStateRootHash(client);
+    const cp1AccountHash = Buffer.from(cp1KeyPair.accountHash()).toString('hex'); 
+    const cp2AccountHash = Buffer.from(cp2KeyPair.accountHash()).toString('hex'); 
+    const approvalKey = `allowances_${cp1AccountHash}_${cp2AccountHash}`
 
-    return await getStateKeyValue(client, stateRootHash, contractHash, balanceKey);
+    return await getStateKeyValue(client, stateRootHash, contractHash, approvalKey);
 };
 
 /**
  * Returns array of ERC-20 contract user token balances.
  * @return {Array} An array of ERC-20 contract token balances.
  */
- const getTokenBalanceOfUserSet = async (client, stateRootHash, contractHash) => {
+ const getTokenAllowanceOfUserSet = async (client, stateRootHash, contractHash, contractKeyPair) => {
     const keyPairSet = getKeyPairOfUserSet();
 
     return Promise.all(keyPairSet.map((i) => {
-        return getTokenBalance(client, stateRootHash, contractHash, i);
+        return getTokenAllowance(client, stateRootHash, contractHash, contractKeyPair, i);
     }));
 };
 

@@ -12,9 +12,8 @@ import {
 } from 'casper-js-sdk';
 
 // Paths.
-const PATH_TO_NCTL = process.env.NCTL;
-const PATH_TO_CONTRACT = `${PATH_TO_NCTL}/assets/net-1/bin/eco/erc20.wasm`;
-const PATH_TO_CONTRACT_KEYS = `${PATH_TO_NCTL}/assets/net-1/faucet`;
+const PATH_TO_CONTRACT = `${process.env.NCTL}/assets/net-1/bin/eco/erc20.wasm`;
+const PATH_TO_CONTRACT_KEYS = `${process.env.NCTL}/assets/net-1/faucet`;
 
 // Deploy parameters - assumes NCTL network.
 const DEPLOY_CHAIN_NAME="casper-net-1";

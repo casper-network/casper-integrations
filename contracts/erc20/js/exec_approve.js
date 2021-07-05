@@ -12,9 +12,8 @@ import {
 } from 'casper-js-sdk';
 
 // Paths.
-const PATH_TO_NCTL = process.env.NCTL;
-const PATH_TO_CONTRACT_KEYS = `${PATH_TO_NCTL}/assets/net-1/faucet`;
-const PATH_TO_USERS = `${PATH_TO_NCTL}/assets/net-1/users`;
+const PATH_TO_CONTRACT_KEYS = `${process.env.NCTL}/assets/net-1/faucet`;
+const PATH_TO_USERS = `${process.env.NCTL}/assets/net-1/users`;
 
 // Deploy parameters - assumes NCTL network.
 const DEPLOY_CHAIN_NAME="casper-net-1";
@@ -23,8 +22,8 @@ const DEPLOY_GAS_PRICE=10;
 const DEPLOY_NODE_ADDRESS="http://localhost:11101/rpc";
 const DEPLOY_TTL_MS=1800000;
 
-// Amount with which to fund each account.
-const AMOUNT_TO_FUND = 2000000000;
+// Amount that each user account will be approved  to withdraw.
+const AMOUNT_TO_APPROVE = 1000000000;
 
 /**
  * Demonstration entry point.
@@ -42,10 +41,9 @@ const AMOUNT_TO_FUND = 2000000000;
     // Step 3: Set contract hash - should be cached upon installation.
     const contractHashAsByteArray = await getContractHashAsByteArray(client, contractKeyPair);
 
-    // Step 4: dispatch a token transfer from contract to user.
+    // Step 4: Invoke contract approve endpoint.
     const deployHashes = [];
     for (const userKeyPair of getKeyPairOfUserSet()) {
-
         // Step 4.1: Set deploy.
         let deploy = DeployUtil.makeDeploy(
             new DeployUtil.DeployParams(
@@ -56,10 +54,10 @@ const AMOUNT_TO_FUND = 2000000000;
             ),
             DeployUtil.ExecutableDeployItem.newStoredContractByHash(
                 contractHashAsByteArray,
-                "transfer",
+                "approve",
                 RuntimeArgs.fromMap({
-                    amount: CLValueBuilder.u256(AMOUNT_TO_FUND),
-                    recipient: CLValueBuilder.byteArray(userKeyPair.accountHash()),
+                    amount: CLValueBuilder.u256(AMOUNT_TO_APPROVE),
+                    spender: CLValueBuilder.byteArray(userKeyPair.accountHash()),
                 })
             ),
             DeployUtil.standardPayment(DEPLOY_GAS_PAYMENT)
@@ -73,7 +71,7 @@ const AMOUNT_TO_FUND = 2000000000;
     }
 
     for (const [userID, deployHash] of deployHashes.entries()) {
-        console.log(`transferring ${AMOUNT_TO_FUND} tokens -> user ${userID + 1} :: deploy hash = ${deployHash}`);
+        console.log(`approving ${AMOUNT_TO_APPROVE} tokens -> user ${userID + 1} :: deploy hash = ${deployHash}`);
     }
 };
 
