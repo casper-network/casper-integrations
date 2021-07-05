@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
 
+#######################################
+# Renders details of ERC-20 token contract.
+# Arguments:
+#   key         Path to public key used to install contract - defaults to $NCTL/assets/net-1/faucet/public_key_hex.
+#######################################
+
 # ----------------------------------------------------------------
 # CONSTANTS
 # ----------------------------------------------------------------
 
+# Set path to casper rust client.
+_CASPER_CLIENT="$NCTL/assets/net-1/bin/casper-client"
+
 # Set deploy parameters - assumes NCTL network.
-_DEPLOY_CHAIN_NAME=casper-net-1
-_DEPLOY_GAS_PAYMENT=10000000000000
-_DEPLOY_GAS_PRICE=10
 _DEPLOY_NODE_ADDRESS="http://localhost:11101/rpc"
-_DEPLOY_TTL="1day"
 
 # ----------------------------------------------------------------
 # FUNCTIONS
@@ -36,22 +41,13 @@ function _main()
     log "... decimals = $TOKEN_DECIMALS"
 }
 
-function _get_state_root_hash()
-{
-    $CASPER_CLIENT get-state-root-hash \
-        --node-address "$_DEPLOY_NODE_ADDRESS" \
-        --block-identifier "" \
-        | jq '.result.state_root_hash' \
-        | sed -e 's/^"//' -e 's/"$//'
-}
-
 function _get_contract_hash ()
 {
     local ACCOUNT_KEY=${1}
 
-    $CASPER_CLIENT query-state \
+    $_CASPER_CLIENT query-state \
         --node-address "$_DEPLOY_NODE_ADDRESS" \
-        --state-root-hash "$(get_state_root_hash)" \
+        --state-root-hash "$(_get_state_root_hash)" \
         --key "$ACCOUNT_KEY" \
         | jq '.result.stored_value.Account.named_keys[] | select(.name == "ERC20") | .key' \
         | sed -e 's/^"//' -e 's/"$//'
@@ -62,12 +58,21 @@ function _get_contract_key_value ()
     local QUERY_KEY=${1}
     local QUERY_PATH=${2}
 
-    $(get_path_to_client) query-state \
+    $_CASPER_CLIENT query-state \
         --node-address "$_DEPLOY_NODE_ADDRESS" \
-        --state-root-hash "$(get_state_root_hash)" \
+        --state-root-hash "$(_get_state_root_hash)" \
         --key "$QUERY_KEY" \
         --query-path "$QUERY_PATH" \
         | jq '.result.stored_value.CLValue.parsed' \
+        | sed -e 's/^"//' -e 's/"$//'
+}
+
+function _get_state_root_hash()
+{
+    $_CASPER_CLIENT get-state-root-hash \
+        --node-address "$_DEPLOY_NODE_ADDRESS" \
+        --block-identifier "" \
+        | jq '.result.state_root_hash' \
         | sed -e 's/^"//' -e 's/"$//'
 }
 

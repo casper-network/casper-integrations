@@ -1,5 +1,23 @@
 #!/usr/bin/env bash
 
+#######################################
+# Installs ERC-20 token contract.
+# Arguments:
+#   contract    Path to compiled https://github.com/casper-ecosystem/erc20 - defaults to $NCTL/assets/net-1/bin/eco/erc20.wasm.
+#   key         Path to secret key to be used to install contract - defaults to $NCTL/assets/net-1/faucet/secret_key.pem.
+#   name        Name of ERC-20 token being created (default = Acme Token).
+#   symbol      Symbol associated with ERC-20 token (default = ACME).
+#   supply      Total supply of ERC-20 token (default = 1e33).
+#   decimals    Decimal places of ERC-20 token (default = 11).
+#######################################
+
+# ----------------------------------------------------------------
+# CONSTANTS
+# ----------------------------------------------------------------
+
+# Set path to casper rust client.
+_CASPER_CLIENT="$NCTL/assets/net-1/bin/casper-client"
+
 # Set deploy parameters - assumes NCTL network.
 _DEPLOY_CHAIN_NAME=casper-net-1
 _DEPLOY_GAS_PAYMENT=10000000000000
@@ -7,17 +25,10 @@ _DEPLOY_GAS_PRICE=10
 _DEPLOY_NODE_ADDRESS="http://localhost:11101/rpc"
 _DEPLOY_TTL="1day"
 
-#######################################
-# Installs ERC-20 token contract under network faucet account.
-# Globals:
-#   CASPER_CLIENT: path to compiled casper-client binary.
-# Arguments:
-#   Path to compiled https://github.com/casper-ecosystem/erc20.
-#   Path to secret key to be used to install contract.
-#   Name of ERC-20 token being created.
-#   Symbol associated with ERC-20 token.
-#   Total supply of ERC-20 token.
-#######################################
+# ----------------------------------------------------------------
+# FUNCTIONS
+# ----------------------------------------------------------------
+
 function _main()
 {
     local PATH_TO_CONTRACT=${1}
@@ -37,7 +48,7 @@ function _main()
     fi
 
     local DEPLOY_HASH=$(
-        $CASPER_CLIENT put-deploy \
+        $_CASPER_CLIENT put-deploy \
             --chain-name "$_DEPLOY_CHAIN_NAME" \
             --gas-price "$_DEPLOY_GAS_PRICE" \
             --node-address "$_DEPLOY_NODE_ADDRESS" \
