@@ -9,8 +9,8 @@ import {
     DeployUtil,
     RuntimeArgs,
 } from 'casper-js-sdk';
-import * as constants from './constants';
-import * as utils from './utils';
+import * as constants from '../constants';
+import * as utils from '../utils';
 
 // Amount with which to transfer between accounts.
 const AMOUNT_TO_TRANSFER = 100000;

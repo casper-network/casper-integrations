@@ -10,8 +10,8 @@ import {
     Keys,
     RuntimeArgs,
 } from 'casper-js-sdk';
-import * as constants from './constants';
-import * as utils from './utils';
+import * as constants from '../constants';
+import * as utils from '../utils';
 
 // Amount with which to fund each account.
 const AMOUNT_TO_TRANSFER = 2000000000;

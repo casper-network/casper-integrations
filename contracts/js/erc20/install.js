@@ -8,8 +8,8 @@ import {
     DeployUtil,
     RuntimeArgs,
 } from 'casper-js-sdk';
-import * as constants from './constants';
-import * as utils from './utils';
+import * as constants from '../constants';
+import * as utils from '../utils';
 
 // Token parameters.
 const TOKEN_NAME = "Acme Token";

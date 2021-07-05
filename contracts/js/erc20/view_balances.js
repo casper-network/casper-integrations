@@ -6,8 +6,8 @@ import _ from 'lodash';
 import { 
     CasperClient,
 } from 'casper-js-sdk';
-import * as constants from './constants';
-import * as utils from './utils';
+import * as constants from '../constants';
+import * as utils from '../utils';
 
 /**
  * Demonstration entry point.

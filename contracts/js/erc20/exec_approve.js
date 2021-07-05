@@ -9,8 +9,8 @@ import {
     DeployUtil,
     RuntimeArgs,
 } from 'casper-js-sdk';
-import * as constants from './constants';
-import * as utils from './utils';
+import * as constants from '../constants';
+import * as utils from '../utils';
 
 // Amount that each user account will be approved  to withdraw.
 const AMOUNT_TO_APPROVE = 1000000000;
