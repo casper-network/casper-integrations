@@ -18,12 +18,12 @@
     "sleep": "^6.3.0"
   },
   "scripts": {
-    "erc20-exec-approve": "node -r esm -e 'require(\"./contracts/erc20/js/exec_approve.js\")'",
-    "erc20-exec-transfer": "node -r esm -e 'require(\"./contracts/erc20/js/exec_transfer.js\")'",
-    "erc20-exec-transfer-from": "node -r esm -e 'require(\"./contracts/erc20/js/exec_transfer_from.js\")'",
-    "erc20-install": "node -r esm -e 'require(\"./contracts/erc20/js/install.js\")'",
-    "erc20-view-allowances": "node -r esm -e 'require(\"./contracts/erc20/js/view_allowances.js\")'",
-    "erc20-view-balances": "node -r esm -e 'require(\"./contracts/erc20/js/view_balances.js\")'",
-    "erc20-view-details": "node -r esm -e 'require(\"./contracts/erc20/js/view_details.js\")'"
+    "erc20-exec-approve": "node -r esm -e 'require(\"./contracts/js/erc20/exec_approve.js\")'",
+    "erc20-exec-transfer": "node -r esm -e 'require(\"./contracts/js/erc20/exec_transfer.js\")'",
+    "erc20-exec-transfer-from": "node -r esm -e 'require(\"./contracts/js/erc20/exec_transfer_from.js\")'",
+    "erc20-install": "node -r esm -e 'require(\"./contracts/js/erc20/install.js\")'",
+    "erc20-view-allowances": "node -r esm -e 'require(\"./contracts/js/erc20/view_allowances.js\")'",
+    "erc20-view-balances": "node -r esm -e 'require(\"./contracts/js/erc20/view_balances.js\")'",
+    "erc20-view-details": "node -r esm -e 'require(\"./contracts/js/erc20/view_details.js\")'"
   }
 }
