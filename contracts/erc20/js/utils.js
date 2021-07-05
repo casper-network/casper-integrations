@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import * as fs from 'fs';
 import { 
     Keys,
 } from 'casper-js-sdk';
@@ -50,6 +51,15 @@ export const getAccountInfo = async (client, stateRootHash, keyPair) => {
     } = _.find(accountInfo.namedKeys, (i) => { return i.name === namedKey });
 
     return contractHash;
+};
+
+/**
+ * Returns a binary as u8 array.
+ * @param {String} pathToBinary - Path to binary file to be loaded into memory.
+ * @return {Uint8Array} Byte array.
+ */
+export const getBinary = (pathToBinary) => {
+    return new Uint8Array(fs.readFileSync(pathToBinary, null).buffer);
 };
 
 /**

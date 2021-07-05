@@ -10,6 +10,8 @@ import {
     Keys,
     RuntimeArgs,
 } from 'casper-js-sdk';
+import * as constants from './constants';
+import * as utils from './utils';
 
 // Paths.
 const PATH_TO_CONTRACT_KEYS = `${process.env.NCTL}/assets/net-1/faucet`;

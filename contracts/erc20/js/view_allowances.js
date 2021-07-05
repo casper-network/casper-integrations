@@ -6,25 +6,18 @@ import _ from 'lodash';
 import { 
     CasperClient,
 } from 'casper-js-sdk';
+import * as constants from './constants';
 import * as utils from './utils';
- 
-// Paths.
-const PATH_TO_CONTRACT_KEYS = `${process.env.NCTL}/assets/net-1/faucet`;
-const PATH_TO_USERS = `${process.env.NCTL}/assets/net-1/users`;
-
-// Deploy parameters - assumes NCTL network.
-const DEPLOY_NODE_ADDRESS="http://localhost:11101/rpc";
-
 
 /**
  * Demonstration entry point.
  */
 const main = async () => {
     // Step 1: Set casper node client.
-    const client = new CasperClient(DEPLOY_NODE_ADDRESS);
+    const client = new CasperClient(constants.DEPLOY_NODE_ADDRESS);
 
     // Step 2: Set contract operator key pair.
-    const keyPairOfContract = utils.getKeyPairOfContract(PATH_TO_CONTRACT_KEYS);
+    const keyPairOfContract = utils.getKeyPairOfContract(constants.PATH_TO_CONTRACT_KEYS);
 
     // Step 3: Query node for global state root hash.
     const stateRootHash = await utils.getStateRootHash(client);
@@ -87,7 +80,7 @@ const getTokenAllowance = async (client, stateRootHash, contractHash, cp1KeyPair
  * @return {Array} An array of ERC-20 contract token allowances.
  */
 const getTokenAllowanceOfUserSet = async (client, stateRootHash, contractHash, keyPairOfContract) => {
-    const keyPairSetOfUsers = utils.getKeyPairOfUserSet(PATH_TO_USERS);
+    const keyPairSetOfUsers = utils.getKeyPairOfUserSet(constants.PATH_TO_USERS);
 
     return Promise.all(keyPairSetOfUsers.map((keyPairOfUser) => {
         return getTokenAllowance(client, stateRootHash, contractHash, keyPairOfContract, keyPairOfUser);
