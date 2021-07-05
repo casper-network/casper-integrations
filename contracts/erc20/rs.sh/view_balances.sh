@@ -22,14 +22,12 @@ function main()
 {
     local CONTRACT_OWNER_ACCOUNT_KEY
     local CONTRACT_OWNER_ACCOUNT_HASH
-    local CONTRACT_OWNER_ACCOUNT_BALANCE_KEY
     local CONTRACT_HASH
     local CONTRACT_OWNER_ACCOUNT_BALANCE
     local TOKEN_SYMBOL
     local USER_ID
     local USER_ACCOUNT_KEY
     local USER_ACCOUNT_HASH
-    local USER_ACCOUNT_BALANCE_KEY
     local USER_ACCOUNT_BALANCE
 
     # Set contract owner account key - i.e. faucet account.

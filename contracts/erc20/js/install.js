@@ -1,5 +1,5 @@
- /**
- * @fileOverview CSPR JS SDK demo: ERC20 01 - install contract.
+/**
+ * @fileOverview CSPR JS SDK demo: ERC20 - install contract.
  */
 
 import * as fs from 'fs';
@@ -33,14 +33,16 @@ const TOKEN_SUPPLY = 1e15;
  * Demonstration entry point.
  */
 const main = async () => {
-    // Step 1: Set casper node client + contract operator key pair.
+    // Step 1: Set casper node client.
     const client = new CasperClient(DEPLOY_NODE_ADDRESS);
+
+    // Step 2: Set contract operator key pair.
     const keyPair = Keys.Ed25519.parseKeyFiles(
         `${PATH_TO_KEYS}/public_key.pem`,
         `${PATH_TO_KEYS}/secret_key.pem`
         );    
 
-    // Step 2: Set deploy (unsigned).
+    // Step 3: Set contract installation deploy (unsigned).
     let deploy = DeployUtil.makeDeploy(
         new DeployUtil.DeployParams(
             keyPair.publicKey,
@@ -60,13 +62,12 @@ const main = async () => {
         DeployUtil.standardPayment(DEPLOY_GAS_PAYMENT)
     );
 
-    // Step 3: sign deploy.
+    // Step 4: Sign deploy.
     deploy = client.signDeploy(deploy, keyPair); 
 
-    // Step 4: Dispatch deploy to node.
+    // Step 5: Dispatch deploy to node.
     const deployHash = await client.putDeploy(deploy);
 
-    // Step 5: Notify user.
     logDetails(deployHash)
 };
 
@@ -97,7 +98,7 @@ contract constructor args:"
 ... token name = ${TOKEN_NAME}
 ... token supply = ${TOKEN_SUPPLY}
 ... token decimals = ${TOKEN_DECIMALS}
-contract installation details:"
+contract installation details:
 ... path = ${PATH_TO_CONTRACT}
 ... deploy hash = ${deployHash}
 ---------------------------------------------------------------------
