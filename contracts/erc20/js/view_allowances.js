@@ -2,11 +2,11 @@
  * @fileOverview CSPR JS SDK demo: ERC20 - view contract balances.
  */
 
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { 
     CasperClient,
-    Keys,
 } from 'casper-js-sdk';
+import * as utils from './utils';
  
 // Paths.
 const PATH_TO_CONTRACT_KEYS = `${process.env.NCTL}/assets/net-1/faucet`;
@@ -20,30 +20,26 @@ const DEPLOY_NODE_ADDRESS="http://localhost:11101/rpc";
  * Demonstration entry point.
  */
 const main = async () => {
-    // Step 1: Set casper node client + contract operator key pair.
+    // Step 1: Set casper node client.
     const client = new CasperClient(DEPLOY_NODE_ADDRESS);
 
     // Step 2: Set contract operator key pair.
-    const contractKeyPair = Keys.Ed25519.parseKeyFiles(
-        `${PATH_TO_CONTRACT_KEYS}/public_key.pem`,
-        `${PATH_TO_CONTRACT_KEYS}/secret_key.pem`
-        );    
+    const keyPairOfContract = utils.getKeyPairOfContract(PATH_TO_CONTRACT_KEYS)
 
-    // Step 3: Set global state root hash against which to issue queries.
-    const stateRootHash = await getStateRootHash(client);
+    // Step 3: Query node for global state root hash.
+    const stateRootHash = await utils.getStateRootHash(client);
 
-    // Step 4: Set contract hash - should be cached upon installation.
-    const contractHash = await getContractHash(client, stateRootHash, contractKeyPair);
+    // Step 4: Query node for contract hash.
+    const contractHash = await utils.getAccountNamedKeyValue(client, stateRootHash, keyPairOfContract, "ERC20");
 
-    // Step 5: Set token symbol.
-    const tokenSymbol = await getStateKeyValue(client, stateRootHash, contractHash, "symbol")
+    // Step 5: Query node for token symbol.
+    const tokenSymbol = await utils.getStateKeyValue(client, stateRootHash, contractHash, "symbol");
 
-    // Step 6: Render token approvals.
-    logApprovals(
-        contractHash,
-        tokenSymbol,
-        await getTokenAllowanceOfUserSet(client, stateRootHash, contractHash, contractKeyPair)
-    )
+    // Step 6: Query node for approved token allowances.
+    const allowances = await getTokenAllowanceOfUserSet(client, stateRootHash, contractHash, keyPairOfContract)
+
+    // Step 7: Render.
+    logAllowances(contractHash, tokenSymbol, allowances)
 };
 
 /**
@@ -53,7 +49,7 @@ const main = async () => {
  * @param {Number} balanceOfAvailableSupply - Currently available ERC-20 token supply.
  * @param {Array} approvalOfUsers - Set of user ERC-20 token balances.
  */
-const logApprovals = (contractHash, tokenSymbol, approvalOfUsers) => {
+const logAllowances = (contractHash, tokenSymbol, approvalOfUsers) => {
     console.log(`
 ---------------------------------------------------------------------
 ERC-20 ${tokenSymbol} contract:
@@ -66,134 +62,35 @@ ERC-20 ${tokenSymbol} contract:
 };
 
 /**
- * Returns on-chain account information.
- * @param {Object} client - JS SDK client for interacting with a node.
- * @param {String} stateRootHash - Root hash of global state at a recent block.
- * @param {Object} keyPair - Assymmetric keys of an on-chain account.
- * @return {Object} On-chain account information.
- */
- const getAccountInfo = async (client, stateRootHash, keyPair) => {
-    const accountHash = Buffer.from(keyPair.accountHash()).toString('hex');
-    const { Account: accountInfo } = await client.nodeClient.getBlockState(
-        stateRootHash,
-        `account-hash-${accountHash}`,
-        []
-    );
-
-    return accountInfo;
-};
-
-/**
- * Returns an on-chain account identifier.
- *
- * @param {Object} keyPair - Assymmetric keys of an on-chain account.
- * @return {String} Hexadecimal representation of an on-chain account identifier.
-*/
-const getAccountHash = (keyPair) => {
-    return Buffer.from(keyPair.accountHash()).toString('hex');
-};
-
-/**
- * Returns on-chain contract identifier.
- * @param {Object} client - JS SDK client for interacting with a node.
- * @param {String} stateRootHash - Root hash of global state at a recent block.
- * @param {Object} keyPair - Assymmetric keys of an on-chain account.
- * @return {String} On-chain contract identifier.
- */
-const getContractHash = async (client, stateRootHash, keyPair) => {
-    // Chain query: get account information. 
-    const accountInfo = await getAccountInfo(client, stateRootHash, keyPair);
-
-    // Get value of contract v1 named key.
-    const { 
-        key: contractHash 
-    } = _.find(accountInfo.namedKeys, (i) => { return i.name === "ERC20" });
-
-    return contractHash;
-};
-
-/**
- * Returns a set ECC key pairs - one for each NCTL user account.
- * @return {Array} An array of assymmetric keys.
- */
-const getKeyPairOfUserSet = () => {
-    return _.range(1, 11).map((userID) => {
-        return Keys.Ed25519.parseKeyFiles(
-            `${PATH_TO_USERS}/user-${userID}/public_key.pem`,
-            `${PATH_TO_USERS}/user-${userID}/secret_key.pem`
-            );
-    });
-};
-
-/**
- * Returns value of a key associated with global storage.
- * @param {Object} client - JS SDK client for interacting with a node.
- * @param {String} stateRootHash - Root hash of global state at a recent block.
- * @param {String} stateKey - Key of an item within global state.
- * @param {String} statePath - Path of data associated with a key within a global state.
- * @return {Object} On-chain account information.
- */
- const getStateKeyValue = async (client, stateRootHash, stateKey, statePath) => {
-    // Chain query: get global state root hash. 
-    stateRootHash = stateRootHash || await getStateRootHash(client);
-
-    // Chain query: get global state key value. 
-    const { 
-        CLValue: { 
-            parsed: value 
-        } 
-    } = await client.nodeClient.getBlockState(
-        stateRootHash,
-        stateKey,
-        [statePath]
-    );
-
-    return value;
-};
-
-/**
- * Returns global state root hash at current block.
- * @param {Object} client - JS SDK client for interacting with a node.
- * @return {String} Root hash of global state at most recent block.
- */
- const getStateRootHash = async (client) => {
-    const { 
-        block: { 
-            header: { 
-                state_root_hash: stateRootHash 
-            } 
-        } 
-    } = await client.nodeClient.getLatestBlockInfo();
-
-    return stateRootHash;
-};
-
-/**
  * Returns an ERC-20 contract token balance.
  * @param {Object} client - JS SDK client for interacting with a node.
  * @param {String} stateRootHash - Root hash of global state at a recent block.
  * @param {String} contractHash - On-chain ERC-20 contract identifier.
- * @param {Object} keyPair - Assymmetric keys of an on-chain account.
- * @return {Object} ERC-20 contract token balance.
+ * @param {Object} cp1KeyPair - Assymmetric keys of an on-chain account.
+ * @param {Object} cp2KeyPair - Assymmetric keys of an on-chain account.
+ * @return {Object} ERC-20 contract token allowance.
  */
 const getTokenAllowance = async (client, stateRootHash, contractHash, cp1KeyPair, cp2KeyPair) => {
-    stateRootHash = stateRootHash || await getStateRootHash(client);
-    const cp1AccountHash = Buffer.from(cp1KeyPair.accountHash()).toString('hex'); 
-    const cp2AccountHash = Buffer.from(cp2KeyPair.accountHash()).toString('hex'); 
+    const cp1AccountHash = utils.getAccountHash(cp1KeyPair); 
+    const cp2AccountHash = utils.getAccountHash(cp2KeyPair); 
     const approvalKey = `allowances_${cp1AccountHash}_${cp2AccountHash}`
 
-    return await getStateKeyValue(client, stateRootHash, contractHash, approvalKey);
+    return await utils.getStateKeyValue(client, stateRootHash, contractHash, approvalKey);
 };
 
 /**
- * Returns array of ERC-20 contract user token balances.
- * @return {Array} An array of ERC-20 contract token balances.
+ * Returns array of ERC-20 contract user token allowances.
+ * @param {Object} client - JS SDK client for interacting with a node.
+ * @param {String} stateRootHash - Root hash of global state at a recent block.
+ * @param {String} contractHash - On-chain ERC-20 contract identifier.
+ * @param {Object} keyPairOfContract - Assymmetric keys of an on-chain account under which contract was installed.
+ * @return {Array} An array of ERC-20 contract token allowances.
  */
- const getTokenAllowanceOfUserSet = async (client, stateRootHash, contractHash, contractKeyPair) => {
-    const keyPairSet = getKeyPairOfUserSet();
+const getTokenAllowanceOfUserSet = async (client, stateRootHash, contractHash, keyPairOfContract) => {
+    const keyPairSetOfUsers = utils.getKeyPairOfUserSet(PATH_TO_USERS);
 
-    return Promise.all(keyPairSet.map((i) => {
-        return getTokenAllowance(client, stateRootHash, contractHash, contractKeyPair, i);
+    return Promise.all(keyPairSetOfUsers.map((keyPairOfUser) => {
+        return getTokenAllowance(client, stateRootHash, contractHash, keyPairOfContract, keyPairOfUser);
     }));
 };
 

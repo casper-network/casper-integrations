@@ -36,7 +36,7 @@ const main = async () => {
     const client = new CasperClient(DEPLOY_NODE_ADDRESS);
 
     // Step 2: Set contract operator key pair.
-    const contractKeyPair = Keys.Ed25519.parseKeyFiles(
+    const keyPairOfContract = Keys.Ed25519.parseKeyFiles(
         `${PATH_TO_CONTRACT_KEYS}/public_key.pem`,
         `${PATH_TO_CONTRACT_KEYS}/secret_key.pem`
         );    
@@ -44,7 +44,7 @@ const main = async () => {
     // Step 3: Set contract installation deploy (unsigned).
     let deploy = DeployUtil.makeDeploy(
         new DeployUtil.DeployParams(
-            contractKeyPair.publicKey,
+            keyPairOfContract.publicKey,
             DEPLOY_CHAIN_NAME,
             DEPLOY_GAS_PRICE,
             DEPLOY_TTL_MS
@@ -62,7 +62,7 @@ const main = async () => {
     );
 
     // Step 4: Sign deploy.
-    deploy = client.signDeploy(deploy, contractKeyPair); 
+    deploy = client.signDeploy(deploy, keyPairOfContract); 
 
     // Step 5: Dispatch deploy to node.
     const deployHash = await client.putDeploy(deploy);

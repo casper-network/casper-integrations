@@ -2,7 +2,7 @@
  * @fileOverview CSPR JS SDK demo: ERC20 - view contract details.
  */
 
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { 
     CasperClient,
     Keys,
@@ -23,7 +23,7 @@ const main = async () => {
     const client = new CasperClient(DEPLOY_NODE_ADDRESS);
 
     // Step 2: Set contract operator key pair.
-    const contractKeyPair = Keys.Ed25519.parseKeyFiles(
+    const keyPairOfContract = Keys.Ed25519.parseKeyFiles(
         `${PATH_TO_CONTRACT_KEYS}/public_key.pem`,
         `${PATH_TO_CONTRACT_KEYS}/secret_key.pem`
         );    
@@ -32,7 +32,7 @@ const main = async () => {
     const stateRootHash = await getStateRootHash(client);
 
     // Step 4: Get hash of installed contract - should be cached.
-    const contractHash = await getContractHash(client, stateRootHash, contractKeyPair);
+    const contractHash = await getContractHash(client, stateRootHash, keyPairOfContract);
 
     // Step 5: Get on-chain token information.
     console.log({
@@ -50,7 +50,7 @@ const main = async () => {
  * @param {Object} keyPair - Assymmetric key of on-chain account.
  * @return {Object} On-chain account information.
  */
- const getAccountInfo = async (client, stateRootHash, keyPair) => {
+const getAccountInfo = async (client, stateRootHash, keyPair) => {
     const accountHash = Buffer.from(keyPair.accountHash()).toString('hex');
     const { Account: accountInfo } = await client.nodeClient.getBlockState(
         stateRootHash,

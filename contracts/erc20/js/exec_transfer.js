@@ -2,7 +2,7 @@
  * @fileOverview CSPR JS SDK demo: ERC20 - fund users.
  */
 
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { 
     CasperClient,
     CLValueBuilder,
@@ -33,13 +33,13 @@ const AMOUNT_TO_TRANSFER = 2000000000;
     const client = new CasperClient(DEPLOY_NODE_ADDRESS);
 
     // Step 2: Set contract operator key pair.
-    const contractKeyPair = Keys.Ed25519.parseKeyFiles(
+    const keyPairOfContract = Keys.Ed25519.parseKeyFiles(
         `${PATH_TO_CONTRACT_KEYS}/public_key.pem`,
         `${PATH_TO_CONTRACT_KEYS}/secret_key.pem`
         );   
 
     // Step 3: Set contract hash - should be cached upon installation.
-    const contractHashAsByteArray = await getContractHashAsByteArray(client, contractKeyPair);
+    const contractHashAsByteArray = await getContractHashAsByteArray(client, keyPairOfContract);
 
     // Step 4: Invoke contract transfer endpoint.
     const deployHashes = [];
@@ -47,7 +47,7 @@ const AMOUNT_TO_TRANSFER = 2000000000;
         // Step 4.1: Set deploy.
         let deploy = DeployUtil.makeDeploy(
             new DeployUtil.DeployParams(
-                contractKeyPair.publicKey,
+                keyPairOfContract.publicKey,
                 DEPLOY_CHAIN_NAME,
                 DEPLOY_GAS_PRICE,
                 DEPLOY_TTL_MS
@@ -64,7 +64,7 @@ const AMOUNT_TO_TRANSFER = 2000000000;
         );
 
         // Step 4.2: Sign deploy.
-        deploy = client.signDeploy(deploy, contractKeyPair); 
+        deploy = client.signDeploy(deploy, keyPairOfContract); 
 
         // Step 4.3: Dispatch deploy to node.
         deployHashes.push(await client.putDeploy(deploy))

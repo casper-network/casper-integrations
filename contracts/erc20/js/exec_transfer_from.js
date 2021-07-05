@@ -33,20 +33,20 @@ const AMOUNT_TO_TRANSFER = 100000;
     const client = new CasperClient(DEPLOY_NODE_ADDRESS);
 
     // Step 2: Set contract operator key pair.
-    const contractKeyPair = Keys.Ed25519.parseKeyFiles(
+    const keyPairOfContract = Keys.Ed25519.parseKeyFiles(
         `${PATH_TO_CONTRACT_KEYS}/public_key.pem`,
         `${PATH_TO_CONTRACT_KEYS}/secret_key.pem`
         );   
 
     // Step 3: Set contract hash - should be cached upon installation.
-    const contractHashAsByteArray = await getContractHashAsByteArray(client, contractKeyPair);
+    const contractHashAsByteArray = await getContractHashAsByteArray(client, keyPairOfContract);
 
     // Step 4: Invoke contract transfer_from endpoint.
     const userKeyPairSet = getKeyPairOfUserSet();
     for (const [userID, userKeyPair] of _.drop(userKeyPairSet).entries()) {
         const deployHash = await executeContractEndpoint(
             client,
-            contractKeyPair,
+            keyPairOfContract,
             contractHashAsByteArray,
             userKeyPairSet[0],
             userKeyPair
@@ -58,17 +58,17 @@ const AMOUNT_TO_TRANSFER = 100000;
 /**
  * Executes target smart contract transfer_from function.
  * @param {Object} client - JS SDK client for interacting with a node.
- * @param {Object} contractKeyPair - Assymmetric keys of an on-chain account acting as contract operator.
+ * @param {Object} keyPairOfContract - Assymmetric keys of an on-chain account acting as contract operator.
  * @param {U8IntArray} contractHash - Target smart contract on-chain identifier.
  * @param {Object} cp1 - Assymmetric keys of an on-chain account acting as counter-party 1.
  * @param {Object} cp1 - Assymmetric keys of an on-chain account acting as counter-party 2.
  * @return {String} Deploy hash.
  */
-const executeContractEndpoint = async (client, contractKeyPair, contractHash, cp1, cp2) => {
+const executeContractEndpoint = async (client, keyPairOfContract, contractHash, cp1, cp2) => {
     // Step 4.1: Set deploy.
     let deploy = DeployUtil.makeDeploy(
         new DeployUtil.DeployParams(
-            contractKeyPair.publicKey,
+            keyPairOfContract.publicKey,
             DEPLOY_CHAIN_NAME,
             DEPLOY_GAS_PRICE,
             DEPLOY_TTL_MS
@@ -86,11 +86,11 @@ const executeContractEndpoint = async (client, contractKeyPair, contractHash, cp
     );
 
     // Step 4.2: Sign deploy.
-    deploy = client.signDeploy(deploy, contractKeyPair); 
+    deploy = client.signDeploy(deploy, keyPairOfContract); 
 
     // Step 4.3: Dispatch deploy to node.
     return await client.putDeploy(deploy);
-}
+};
 
 /**
  * Returns on-chain account information.
