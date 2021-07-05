@@ -19,6 +19,7 @@
   },
   "scripts": {
     "erc20-install": "node -r esm -e 'require(\"./contracts/erc20/install.js\")'",
-    "erc20-view-details": "node -r esm -e 'require(\"./contracts/erc20/view_details.js\")'"
+    "erc20-view-details": "node -r esm -e 'require(\"./contracts/erc20/view_details.js\")'",
+    "erc20-fund-users": "node -r esm -e 'require(\"./contracts/erc20/exec_fund_users.js\")'"
   }
 }
