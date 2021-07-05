@@ -24,7 +24,7 @@ const main = async () => {
     const client = new CasperClient(DEPLOY_NODE_ADDRESS);
 
     // Step 2: Set contract operator key pair.
-    const keyPairOfContract = utils.getKeyPairOfContract(PATH_TO_CONTRACT_KEYS)
+    const keyPairOfContract = utils.getKeyPairOfContract(PATH_TO_CONTRACT_KEYS);
 
     // Step 3: Query node for global state root hash.
     const stateRootHash = await utils.getStateRootHash(client);
@@ -36,10 +36,10 @@ const main = async () => {
     const tokenSymbol = await utils.getStateKeyValue(client, stateRootHash, contractHash, "symbol");
 
     // Step 6: Query node for approved token allowances.
-    const allowances = await getTokenAllowanceOfUserSet(client, stateRootHash, contractHash, keyPairOfContract)
+    const allowances = await getTokenAllowanceOfUserSet(client, stateRootHash, contractHash, keyPairOfContract);
 
     // Step 7: Render.
-    logAllowances(contractHash, tokenSymbol, allowances)
+    logAllowances(contractHash, tokenSymbol, allowances);
 };
 
 /**

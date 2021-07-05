@@ -15,7 +15,7 @@ const PATH_TO_USERS = `${process.env.NCTL}/assets/net-1/users`;
 // Deploy parameters - assumes NCTL network.
 const DEPLOY_NODE_ADDRESS="http://localhost:11101/rpc";
 
- 
+
 /**
  * Demonstration entry point.
  */
@@ -24,7 +24,7 @@ const main = async () => {
     const client = new CasperClient(DEPLOY_NODE_ADDRESS);
 
     // Step 2: Set contract operator key pair.
-    const keyPairOfContract = utils.getKeyPairOfContract(PATH_TO_CONTRACT_KEYS)
+    const keyPairOfContract = utils.getKeyPairOfContract(PATH_TO_CONTRACT_KEYS);
 
     // Step 3: Query node for global state root hash.
     const stateRootHash = await utils.getStateRootHash(client);

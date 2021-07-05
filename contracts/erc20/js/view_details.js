@@ -5,8 +5,8 @@
 import _ from 'lodash';
 import { 
     CasperClient,
-    Keys,
 } from 'casper-js-sdk';
+import * as utils from './utils';
 
 // Paths.
 const PATH_TO_CONTRACT_KEYS = `${process.env.NCTL}/assets/net-1/faucet`;
@@ -23,102 +23,33 @@ const main = async () => {
     const client = new CasperClient(DEPLOY_NODE_ADDRESS);
 
     // Step 2: Set contract operator key pair.
-    const keyPairOfContract = Keys.Ed25519.parseKeyFiles(
-        `${PATH_TO_CONTRACT_KEYS}/public_key.pem`,
-        `${PATH_TO_CONTRACT_KEYS}/secret_key.pem`
-        );    
+    const keyPairOfContract = utils.getKeyPairOfContract(PATH_TO_CONTRACT_KEYS);   
 
-    // Step 3: Get global state root hash against which to issue queries.
-    const stateRootHash = await getStateRootHash(client);
+    // Step 3: Query node for global state root hash.
+    const stateRootHash = await utils.getStateRootHash(client);
 
-    // Step 4: Get hash of installed contract - should be cached.
-    const contractHash = await getContractHash(client, stateRootHash, keyPairOfContract);
+    // Step 4: Query node for contract hash.
+    const contractHash = await utils.getAccountNamedKeyValue(client, stateRootHash, keyPairOfContract, "ERC20");
 
-    // Step 5: Get on-chain token information.
+    // Step 5: Query node for token symbol.
+    const tokenName = await utils.getStateKeyValue(client, stateRootHash, contractHash, "name");
+
+    // Step 6: Query node for token symbol.
+    const tokenSymbol = await utils.getStateKeyValue(client, stateRootHash, contractHash, "symbol");
+
+    // Step 7: Query node for token total supply.
+    const tokenTotalSupply = await utils.getStateKeyValue(client, stateRootHash, contractHash, "total_supply");
+
+    // Step 8: Query node for token decimals.
+    const tokenDecimals = await utils.getStateKeyValue(client, stateRootHash, contractHash, "decimals");
+
+    // Step 8: Render token details.
     console.log({
-        "name": await getContractKeyValue(client, stateRootHash, contractHash, "name"),
-        "symbol": await getContractKeyValue(client, stateRootHash, contractHash, "symbol"),
-        "totalSupply": await getContractKeyValue(client, stateRootHash, contractHash, "total_supply"),
-        "decimals": await getContractKeyValue(client, stateRootHash, contractHash, "decimals")
+        "name": tokenName,
+        "symbol": tokenSymbol,
+        "totalSupply": tokenTotalSupply,
+        "decimals": tokenDecimals
     });
-};
-
-/**
- * Returns account information associated with an on-chain account.
- * @param {Object} client - Node interaction client .
- * @param {String} stateRootHash - Hexadecimal representation of global state's root hash.
- * @param {Object} keyPair - Assymmetric key of on-chain account.
- * @return {Object} On-chain account information.
- */
-const getAccountInfo = async (client, stateRootHash, keyPair) => {
-    const accountHash = Buffer.from(keyPair.accountHash()).toString('hex');
-    const { Account: accountInfo } = await client.nodeClient.getBlockState(
-        stateRootHash,
-        `account-hash-${accountHash}`,
-        []
-    );
-
-    return accountInfo;
-}
-
-/**
- * Returns on-chain contract identifier.
- * @param {Object} client - Node interaction client .
- * @param {String} stateRootHash - Hexadecimal representation of global state's root hash.
- * @param {Object} keyPair - Assymmetric key of on-chain account.
- * @return {String} On-chain contract identifier.
- */
-const getContractHash = async (client, stateRootHash, keyPair) => {
-    // Chain query: get account information. 
-    const accountInfo = await getAccountInfo(client, stateRootHash, keyPair);
-
-    // Get value of contract v1 named key.
-    const { key: contractHash } = _.find(accountInfo.namedKeys, (i) => { return i.name === "ERC20" });
-
-    return contractHash;
-};
-
-/**
- * Returns account information associated with an on-chain account.
- * @param {Object} client - Node interaction client .
- * @param {String} stateRootHash - Hexadecimal representation of global state's root hash.
- * @param {String} stateKey - Key of an item within global state.
- * @param {String} statePath - Path of data associated with a key within a global state.
- * @return {Object} On-chain account information.
- */
-const getContractKeyValue = async (client, stateRootHash, stateKey, statePath) => {
-    // Chain query: get global state root hash. 
-    stateRootHash = stateRootHash || await getStateRootHash(client);
-
-    // Chain query: get global state key value. 
-    const { 
-        CLValue: { 
-            parsed: value 
-        } 
-    } = await client.nodeClient.getBlockState(
-        stateRootHash,
-        stateKey,
-        [statePath]
-    );
-
-    return value;
-};
-
-/**
- * Returns global state root hash at current block.
- * @param {Object} client - Node interaction client.
- * @return {String} Root hash of global state at most recent block.
- */
-const getStateRootHash = async (client) => {
-    const { 
-        block: { 
-            header: { 
-                state_root_hash: stateRootHash 
-            } 
-        } 
-    } = await client.nodeClient.getLatestBlockInfo();
-
-    return stateRootHash;
 };
 
 main();
