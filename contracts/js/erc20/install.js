@@ -11,6 +11,9 @@ import {
 import * as constants from '../constants';
 import * as utils from '../utils';
 
+// Path to contract to be installed.
+const PATH_TO_CONTRACT = `${process.env.NCTL}/assets/net-1/bin/eco/erc20.wasm`;
+
 // Token parameters.
 const TOKEN_NAME = "Acme Token";
 const TOKEN_SYMBOL = "ACME";
@@ -36,7 +39,7 @@ const main = async () => {
             constants.DEPLOY_TTL_MS
         ),
         DeployUtil.ExecutableDeployItem.newModuleBytes(
-            utils.getBinary(constants.PATH_TO_CONTRACT),
+            utils.getBinary(PATH_TO_CONTRACT),
             RuntimeArgs.fromMap({
                 token_decimals: CLValueBuilder.u8(TOKEN_DECIMALS),
                 token_name: CLValueBuilder.string(TOKEN_NAME),

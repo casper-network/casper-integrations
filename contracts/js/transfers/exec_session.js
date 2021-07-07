@@ -1,5 +1,5 @@
 /**
- * @fileOverview CSPR JS SDK demo: AUCTION - add bid.
+ * @fileOverview CSPR JS SDK demo: execute session based transfers.
  */
 
  import _ from 'lodash';
@@ -14,7 +14,7 @@
   */
  const main = async () => {
 
-    console.log("TODO: auction execute add bid");
+    console.log("TODO: execute session based transfers");
 
  };
  

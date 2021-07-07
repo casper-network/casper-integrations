@@ -34,6 +34,21 @@ export const getAccountInfo = async (client, stateRootHash, keyPair) => {
 };
 
 /**
+ * Returns on-chain account main purse unforgreable reference (uref).
+ * @param {Object} client - JS SDK client for interacting with a node.
+ * @param {String} stateRootHash - Root hash of global state at a recent block.
+ * @param {Object} keyPair - Assymmetric keys of an on-chain account.
+ * @return {Object} On-chain account main purse uref.
+ */
+export const getAccountMainPurseURef = async (client, stateRootHash, keyPair) => {
+    const {
+        mainPurse
+    } = await getAccountInfo(client, stateRootHash, keyPair);
+
+    return mainPurse;
+};
+
+/**
  * Returns a value under an on-chain account's storage.
  * @param {Object} client - JS SDK client for interacting with a node.
  * @param {String} stateRootHash - Root hash of global state at a recent block.
@@ -75,6 +90,20 @@ export const getBinary = (pathToBinary) => {
 };
 
 /**
+ * Returns a set ECC key pairs - one for each NCTL delegator account.
+ * @param {String} pathToUsers - Path to NCTL user directories.
+ * @return {Array} An array of assymmetric keys.
+ */
+ export const getKeyPairOfDelegatorSet = (pathToUsers) => {
+    return _.range(1, 6).map((userID) => {
+        return Keys.Ed25519.parseKeyFiles(
+            `${pathToUsers}/user-${userID}/public_key.pem`,
+            `${pathToUsers}/user-${userID}/secret_key.pem`
+            );
+    });
+};
+
+/**
  * Returns a set ECC key pairs - one for each NCTL user account.
  * @param {String} pathToUsers - Path to NCTL user directories.
  * @return {Array} An array of assymmetric keys.
@@ -84,6 +113,20 @@ export const getKeyPairOfUserSet = (pathToUsers) => {
         return Keys.Ed25519.parseKeyFiles(
             `${pathToUsers}/user-${userID}/public_key.pem`,
             `${pathToUsers}/user-${userID}/secret_key.pem`
+            );
+    });
+};
+
+/**
+ * Returns a set ECC key pairs - one for each NCTL validator account.
+ * @param {String} pathToValidators - Path to NCTL validator directories.
+ * @return {Array} An array of assymmetric keys.
+ */
+ export const getKeyPairOfValidatorSet = (pathToValidators) => {
+    return _.range(1, 6).map((nodeID) => {
+        return Keys.Ed25519.parseKeyFiles(
+            `${pathToValidators}/node-${nodeID}/keys/public_key.pem`,
+            `${pathToValidators}/node-${nodeID}/keys/secret_key.pem`
             );
     });
 };
