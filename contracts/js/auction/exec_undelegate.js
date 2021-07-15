@@ -6,6 +6,8 @@ import _ from 'lodash';
 import { 
     CasperClient,
     CLTypeBuilder,
+    CLURef,
+    CLURefType,
     CLValue,
     CLValueBuilder,
     DeployUtil,
@@ -25,69 +27,80 @@ const AMOUNT_TO_UNDELEGATE = 2000000000;
  * Demonstration entry point.
  */
 const main = async () => {
-    // Step 1: Set casper node client.
-    const client = new CasperClient(constants.DEPLOY_NODE_ADDRESS);
 
-    // Step 2: Query node for global state root hash.
-    const stateRootHash = await utils.getStateRootHash(client);
+const purseUrefAsString = "uref-523c075c42a204dd0635b2d4f4ab56f8a8d62b752ca61754db45ae484622c78c-007";
+const args = RuntimeArgs.fromMap({
+    unbond_purse: CLValueBuilder.option(
+        CLURef.fromFormattedStr(purseUrefAsString),
+        CLTypeBuilder.uref()
+        )
+});
 
-    // Step 3: Set delegator to validator pairings.
-    const targets = _.zip(
-        utils.getKeyPairOfDelegatorSet(constants.PATH_TO_USERS),
-        utils.getKeyPairOfValidatorSet(constants.PATH_TO_VALIDATORS)
-    );
 
-    // Step 4: Dispatch delegate session deploys.
-    const deployHashes = [];
-    for (const [keyPairOfDelegator, keyPairOfValidator] of targets) {
-        // Step 3.1: Set delegator main purse uref to which refund/rewwards will be paid out.
-        const mainPurseURefOfDelegator = SDK.CLURef.fromFormattedStr(
-            await utils.getAccountMainPurseURef(client, stateRootHash, keyPairOfDelegator)
-        );
+    // // Step 1: Set casper node client.
+    // const client = new CasperClient(constants.DEPLOY_NODE_ADDRESS);
 
-        // console.log(mainPurseOfDelegatorURef.data);
+    // // Step 2: Query node for global state root hash.
+    // const stateRootHash = await utils.getStateRootHash(client);
 
-        // console.log(
-        //     CLValueBuilder.uref(
-        //         mainPurseOfDelegatorURef.data,
-        //         mainPurseOfDelegatorURef.accessRights
-        //         )
-        //     );
+    // // Step 3: Set delegator to validator pairings.
+    // const targets = _.zip(
+    //     utils.getKeyPairOfDelegatorSet(constants.PATH_TO_USERS),
+    //     utils.getKeyPairOfValidatorSet(constants.PATH_TO_VALIDATORS)
+    // );
 
-        // Step 3.2: Set deploy.
-        let deploy = DeployUtil.makeDeploy(
-            new DeployUtil.DeployParams(
-                keyPairOfDelegator.publicKey,
-                constants.DEPLOY_CHAIN_NAME,
-                constants.DEPLOY_GAS_PRICE,
-                constants.DEPLOY_TTL_MS
-            ),
-            DeployUtil.ExecutableDeployItem.newModuleBytes(
-                utils.getBinary(PATH_TO_CONTRACT),
-                RuntimeArgs.fromMap({
-                    amount: CLValueBuilder.u512(AMOUNT_TO_UNDELEGATE),
-                    delegator: CLValueBuilder.publicKey([...keyPairOfDelegator.publicKey.data], 1),
-                    validator: CLValueBuilder.publicKey([...keyPairOfValidator.publicKey.data], 1),
-                    unbond_purse: CLValueBuilder.option(
-                        CLValueBuilder.uref(mainPurseURefOfDelegator.data, mainPurseURefOfDelegator.accessRights),
-                        CLTypeBuilder.uref()
-                        )
-                })
-            ),
-            DeployUtil.standardPayment(constants.DEPLOY_GAS_PAYMENT)
-        );
+    // // Step 4: Dispatch delegate session deploys.
+    // const deployHashes = [];
+    // for (const [keyPairOfDelegator, keyPairOfValidator] of targets) {
+    //     // Step 3.1: Set delegator main purse uref to which refund/rewwards will be paid out.
+    //     const mainPurseURefOfDelegator = SDK.CLURef.fromFormattedStr(
+    //         await utils.getAccountMainPurseURef(client, stateRootHash, keyPairOfDelegator)
+    //     );
 
-        // Step 3.3: Sign deploy.
-        deploy = client.signDeploy(deploy, keyPairOfDelegator); 
+    //     console.log(mainPurseURefOfDelegator);
 
-        // Step 3.4: Dispatch deploy to node.
-        deployHashes.push(await client.putDeploy(deploy));
-    }
+    //     // console.log(
+    //     //     CLValueBuilder.uref(
+    //     //         mainPurseURefOfDelegator.data,
+    //     //         mainPurseURefOfDelegator.accessRights
+    //     //         )
+    //     //     );
+
+    //     // Step 3.2: Set deploy.
+    //     let deploy = DeployUtil.makeDeploy(
+    //         new DeployUtil.DeployParams(
+    //             keyPairOfDelegator.publicKey,
+    //             constants.DEPLOY_CHAIN_NAME,
+    //             constants.DEPLOY_GAS_PRICE,
+    //             constants.DEPLOY_TTL_MS
+    //         ),
+    //         DeployUtil.ExecutableDeployItem.newModuleBytes(
+    //             utils.getBinary(PATH_TO_CONTRACT),
+    //             RuntimeArgs.fromMap({
+    //                 amount: CLValueBuilder.u512(AMOUNT_TO_UNDELEGATE),
+    //                 delegator: CLValueBuilder.publicKey([...keyPairOfDelegator.publicKey.data], 1),
+    //                 validator: CLValueBuilder.publicKey([...keyPairOfValidator.publicKey.data], 1),
+    //                 unbond_purse: CLValueBuilder.option(
+    //                     CLValueBuilder.uref(mainPurseURefOfDelegator.data, mainPurseURefOfDelegator.accessRights),
+    //                     CLTypeBuilder.uref()
+    //                     )
+    //             })
+    //         ),
+    //         DeployUtil.standardPayment(constants.DEPLOY_GAS_PAYMENT)
+    //     );
+
+        // // Step 3.3: Sign deploy.
+        // deploy = client.signDeploy(deploy, keyPairOfDelegator); 
+
+        // // Step 3.4: Dispatch deploy to node.
+        // deployHashes.push(await client.putDeploy(deploy));
+    // }
 
     // Step 6: Render details.
-    for (const [idx, deployHash] of deployHashes.entries()) {
-        console.log(`undelegating ${AMOUNT_TO_UNDELEGATE} CSPR from user ${idx + 1} -> validator ${idx + 1} :: deploy hash = ${deployHash}`);
-    }
+    // for (const [idx, deployHash] of deployHashes.entries()) {
+    //     console.log(`undelegating ${AMOUNT_TO_UNDELEGATE} CSPR from user ${idx + 1} -> validator ${idx + 1} :: deploy hash = ${deployHash}`);
+    // }
+
 };
   
 main();
