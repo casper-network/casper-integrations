@@ -38,13 +38,21 @@ cd YOUR_WORKING_DIRECTORY/casper-integrations
 npm install
 ```
 
-2.  Run node-api example:
+2.  Import environment variables:
+
+```
+source YOUR_WORKING_DIRECTORY/env.sh
+```
+
+NOTE - if you wish to override them then simply make a copy of the env.sh file, and then edit and import the copy instead.
+
+3.  Run node-api example:
 
 ```
 node YOUR_WORKING_DIRECTORY/casper-integrations/node-api/<example-name>/request.js
 ```
 
-3.  Run erc20 example:
+4.  Run erc20 example:
 
 ```
 node YOUR_WORKING_DIRECTORY/casper-integrations/contracts/erc20/<script-name>.js

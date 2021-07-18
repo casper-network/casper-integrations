@@ -36,7 +36,7 @@ const AMOUNT_TO_TRANSFER = 2000000000;
     // Step 5: Invoke contract transfer endpoint.
     const deployHashes = [];
     const userKeyPairSet = utils.getKeyPairOfUserSet(constants.PATH_TO_USERS);
-    for (const userKeyPair of userKeyPairSet)) {
+    for (const userKeyPair of userKeyPairSet) {
         // Step 5.1: Set deploy.
         let deploy = DeployUtil.makeDeploy(
             new DeployUtil.DeployParams(
