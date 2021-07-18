@@ -1,13 +1,13 @@
-# Path to folder containing keys with which to operate smart contract.
+# Path to folder containing keys with which to operate a smart contract.
 export CSPR_INTS_PATH_TO_CONTRACT_KEYS="$NCTL/assets/net-1/faucet"
 
 # Path to folder containing keys with which to act as a test faucet.
 export CSPR_INTS_PATH_TO_FAUCET_KEYS="$NCTL/assets/net-1/faucet"
 
-# Path to folder containing keys with which to act as test users.
+# Path to folder containing sub-folders named, user-1, user-2 ...etc.  Each sub-folder contains associated with the test user.
 export CSPR_INTS_PATH_TO_USERS="$NCTL/assets/net-1/users"
 
-# Path to folder containing keys with which to act as test validators.
+# Path to folder containing sub-folders named, node-1, node-2 ...etc.  Each sub-folder contains associated with the test validator/node.
 export CSPR_INTS_PATH_TO_VALIDATORS="$NCTL/assets/net-1/nodes"
 
 # Name of target chain.
