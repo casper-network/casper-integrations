@@ -1,18 +1,17 @@
 // Path to folder containing keys with which to operate smart contract.
-export const PATH_TO_CONTRACT_KEYS = process.env.CSPR_INTS_PATH_TO_CONTRACT_KEYS || 
-                                     `${process.env.NCTL}/assets/net-1/faucet`;
+export const PATH_TO_CONTRACT_KEYS = process.env.CSPR_INTS_PATH_TO_CONTRACT_KEYS || `${process.env.NCTL}/assets/net-1/faucet`;
 
 // Path to folder containing keys with which to act as a test faucet.
-export const PATH_TO_FAUCET_KEYS = process.env.CSPR_INTS_PATH_TO_FAUCET_KEYS || 
-                                   `${process.env.NCTL}/assets/net-1/faucet`;
+export const PATH_TO_FAUCET_KEYS = process.env.CSPR_INTS_PATH_TO_FAUCET_KEYS || `${process.env.NCTL}/assets/net-1/faucet`;
 
 // Path to folder containing keys with which to act as test users.
-export const PATH_TO_USERS = process.env.CSPR_INTS_PATH_TO_USERS || 
-                             `${process.env.NCTL}/assets/net-1/users`;
+export const PATH_TO_USERS = process.env.CSPR_INTS_PATH_TO_USERS || `${process.env.NCTL}/assets/net-1/users`;
 
 // Path to folder containing keys with which to act as test validators.
-export const PATH_TO_VALIDATORS = process.env.CSPR_INTS_PATH_TO_VALIDATORS || 
-                                  `${process.env.NCTL}/assets/net-1/nodes`;
+export const PATH_TO_VALIDATORS = process.env.CSPR_INTS_PATH_TO_VALIDATORS || `${process.env.NCTL}/assets/net-1/nodes`;
+
+// Path to an ERC20 samrt contract wasm file.
+export const PATH_TO_CONTRACT_ERC_20 = process.env.PATH_TO_CONTRACT_ERC_20 || `${process.env.NCTL}/assets/net-1/bin/eco/erc20.wasm`;
 
 // Name of target chain.
 export const DEPLOY_CHAIN_NAME = process.env.CSPR_INTS_CHAIN_NAME || "casper-net-1";

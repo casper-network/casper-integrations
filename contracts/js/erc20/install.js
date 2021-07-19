@@ -12,7 +12,7 @@ import * as constants from '../constants';
 import * as utils from '../utils';
 
 // Path to contract to be installed.
-const PATH_TO_CONTRACT = `${process.env.NCTL}/assets/net-1/bin/eco/erc20.wasm`;
+const PATH_TO_CONTRACT = constants.PATH_TO_CONTRACT_ERC_20;
 
 // Token parameters.
 const TOKEN_NAME = "Acme Token";
