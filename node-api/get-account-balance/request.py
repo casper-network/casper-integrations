@@ -6,36 +6,37 @@ import pycspr
 
 
 # A known casper test-net node address.
-_NODE_ADDRESS = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
+_NODE_ADDRESS: str = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
 
-# Initialise pycspr.
-pycspr.initialise(
-    pycspr.NodeConnectionInfo(host=_NODE_ADDRESS, port_rest=8888, port_rpc=7777, port_sse=9999)
-)
+# A known account public key.
+_ACCOUNT_KEY: bytes = bytes.fromhex("01cb99ab80325d73552c7c0b8d10d8cb2d19116b1f233431751fe82f9c25db51c1")
 
-# A known on-chain account key.
-_ACCOUNT_KEY = "01cb99ab80325d73552c7c0b8d10d8cb2d19116b1f233431751fe82f9c25db51c1"
+# Account hash mapped from account key.
+_ACCOUNT_HASH: bytes = pycspr.get_account_hash(_ACCOUNT_KEY)
 
 # A known state of the linear block chain at which to query.
-_STATE_ROOT_HASH = "33e257bc70f7094d030a18f8aede3d58d8e202fb946810ce3292625fe853b636"
+_STATE_ROOT_HASH: bytes = bytes.fromhex("33e257bc70f7094d030a18f8aede3d58d8e202fb946810ce3292625fe853b636")
 
 
 def main():
     """Retrieves on-chain account balance.
     
     """
+    # Set client.
+    client = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
+
     # Set purse.
-    purse_id = pycspr.get_account_main_purse_uref(_ACCOUNT_KEY, _STATE_ROOT_HASH)
+    purse_id = client.queries.get_account_main_purse_uref(_ACCOUNT_KEY, _STATE_ROOT_HASH)
 
     # Set balance.
-    balance = pycspr.get_account_balance(purse_id, _STATE_ROOT_HASH)
+    balance_motes = client.queries.get_account_balance(purse_id, _STATE_ROOT_HASH)
 
     print("-----------------------------------------------------------------------------------------------------")
-    print(f"QUERIED TEST-NET NODE {pycspr.CONNECTION} @ {_STATE_ROOT_HASH}")
+    print(f"QUERIED TEST-NET NODE {_NODE_ADDRESS} @ {_STATE_ROOT_HASH.hex()}")
     print("-----------------------------------------------------------------------------------------------------")
-    print(f"A/C key = {_ACCOUNT_KEY}")
+    print(f"A/C key = {_ACCOUNT_KEY.hex()}")
     print(f"A/C main purse id = {purse_id}")
-    print(f"A/C main purse balance = {balance}")
+    print(f"A/C main purse balance (motes) = {balance_motes}")
     print("-----------------------------------------------------------------------------------------------------")
 
 
@@ -43,4 +44,4 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as err:
-        print(f"API ERROR @ NODE {pycspr.CONNECTION} :: {err}")
+        print(f"API ERROR @ NODE {_NODE_ADDRESS} :: {err}")
