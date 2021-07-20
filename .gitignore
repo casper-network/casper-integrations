@@ -24,3 +24,6 @@ use-cases/ucase-1-document-notarisation/tmp
 # Slide deck master files.
 *.key
 *.pptx
+
+# Custom environments.
+envs

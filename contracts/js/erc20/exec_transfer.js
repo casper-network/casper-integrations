@@ -65,7 +65,7 @@ const AMOUNT_TO_TRANSFER = 2000000000;
 
     // Step 6: Render details.
     for (const [userID, deployHash] of deployHashes.entries()) {
-        console.log(`transferring ${AMOUNT_TO_TRANSFER} tokens -> user ${userID + 1} :: deploy hash = ${deployHash}`);
+        console.log(`transferring ${AMOUNT_TO_TRANSFER} ERC-20 tokens -> user ${userID + 1} :: deploy hash = ${deployHash}`);
     }
 };
 

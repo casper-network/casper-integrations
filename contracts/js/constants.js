@@ -14,7 +14,7 @@ export const PATH_TO_VALIDATORS = process.env.CSPR_INTS_PATH_TO_VALIDATORS || `$
 export const PATH_TO_CONTRACT_ERC_20 = process.env.PATH_TO_CONTRACT_ERC_20 || `${process.env.NCTL}/assets/net-1/bin/eco/erc20.wasm`;
 
 // Name of target chain.
-export const DEPLOY_CHAIN_NAME = process.env.CSPR_INTS_CHAIN_NAME || "casper-net-1";
+export const DEPLOY_CHAIN_NAME = process.env.CSPR_INTS_DEPLOY_CHAIN_NAME || "casper-net-1";
 
 // Gas payment to be offered.
 export const DEPLOY_GAS_PAYMENT = process.env.CSPR_INTS_DEPLOY_GAS_PAYMENT || 10000000000000;
@@ -23,7 +23,7 @@ export const DEPLOY_GAS_PAYMENT = process.env.CSPR_INTS_DEPLOY_GAS_PAYMENT || 10
 export const DEPLOY_GAS_PAYMENT_FOR_NATIVE_TRANSFER = process.env.CSPR_INTS_DEPLOY_GAS_PAYMENT_FOR_NATIVE_TRANSFER || 100000;
 
 // Gas price to be offered.
-export const DEPLOY_GAS_PRICE = process.env.CSPR_INTS_DEPLOY_GAS_PRICE || 10;
+export const DEPLOY_GAS_PRICE = process.env.CSPR_INTS_DEPLOY_GAS_PRICE ? parseInt(process.env.CSPR_INTS_DEPLOY_GAS_PRICE) : 1;
 
 // Address of target node.
 export const DEPLOY_NODE_ADDRESS = process.env.CSPR_INTS_DEPLOY_NODE_ADDRESS || "http://localhost:11101/rpc";

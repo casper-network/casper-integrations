@@ -10,20 +10,23 @@ export CSPR_INTS_PATH_TO_USERS="$NCTL/assets/net-1/users"
 # Path to folder containing sub-folders named, node-1, node-2 ...etc.  Each sub-folder contains associated with the test validator/node.
 export CSPR_INTS_PATH_TO_VALIDATORS="$NCTL/assets/net-1/nodes"
 
+# Path to an ERC20 smart contract wasm file.
+export PATH_TO_CONTRACT_ERC_20="$NCTL/assets/net-1/bin/eco/erc20.wasm"
+
 # Name of target chain.
-export CSPR_INTS_DEPLOY_CHAIN_NAME="casper-net-1";
+export CSPR_INTS_DEPLOY_CHAIN_NAME="casper-net-1"
 
 # Gas payment to be offered.
-export CSPR_INTS_DEPLOY_GAS_PAYMENT=10000000000000;
+export CSPR_INTS_DEPLOY_GAS_PAYMENT=10000000000000
 
 # Gas payment for native transfers to be offered.
-export CSPR_INTS_DEPLOY_GAS_PAYMENT_FOR_NATIVE_TRANSFER=100000;
+export CSPR_INTS_DEPLOY_GAS_PAYMENT_FOR_NATIVE_TRANSFER=100000
 
 # Gas price to be offered.
-export CSPR_INTS_DEPLOY_GAS_PRICE=10;
+export CSPR_INTS_DEPLOY_GAS_PRICE=1
 
 # Address of target node.
 export CSPR_INTS_DEPLOY_NODE_ADDRESS="http://localhost:11101/rpc"
 
 # Time interval in milliseconds after which deploy will not be processed by a node.
-export CSPR_INTS_DEPLOY_TTL_MS=1800000;
+export CSPR_INTS_DEPLOY_TTL_MS=1800000
