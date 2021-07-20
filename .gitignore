@@ -21,9 +21,10 @@ yarn.lock
 use-cases/ucase-1-document-notarisation/outputs
 use-cases/ucase-1-document-notarisation/tmp
 
-# Slide deck master files.
+# Slide deck master files + demo movies.
 *.key
 *.pptx
+*.mov
 
 # Custom environments.
 envs
