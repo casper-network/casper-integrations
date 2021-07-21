@@ -20,7 +20,7 @@ def main():
     
     """
     # Set client.
-    client = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
+    client: pycspr.NodeClient = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
 
     # Set auction info scoped by current era.
     auction_info_1: dict = client.queries.get_auction_info()
@@ -31,7 +31,8 @@ def main():
     # Set auction info scoped by known height.
     auction_info_3: dict = client.queries.get_auction_info(_BLOCK_HEIGHT)
 
-    # Verify auction information equivalence.
+    # Verify.
+    assert auction_info_1 != auction_info_2
     assert auction_info_2 == auction_info_3
 
     print("-----------------------------------------------------------------------------------------------------")

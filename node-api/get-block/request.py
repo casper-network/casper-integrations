@@ -23,7 +23,7 @@ def main():
     client = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
 
     # Set block - latest.
-    block_1: dict = client.queries.get_block(_BLOCK_HASH)
+    block_1: dict = client.queries.get_block()
     
     # Set block - by known hash.
     block_2: dict = client.queries.get_block(_BLOCK_HASH)
@@ -32,6 +32,7 @@ def main():
     block_3: dict = client.queries.get_block(_BLOCK_HEIGHT)
 
     # Verify block information equivalence.
+    assert block_1 != block_2
     assert block_2 == block_3
     
     print("-----------------------------------------------------------------------------------------------------")

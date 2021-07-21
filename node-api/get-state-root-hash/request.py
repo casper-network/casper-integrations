@@ -31,7 +31,8 @@ def main():
     # Set state root hash - by known block height.
     state_root_hash_3: bytes = client.queries.get_state_root_hash(_BLOCK_HEIGHT)
 
-    # Verify block information equivalence.
+    # Verify.
+    assert state_root_hash_1 != state_root_hash_2
     assert state_root_hash_2 == state_root_hash_3
 
     print("-----------------------------------------------------------------------------------------------------")
