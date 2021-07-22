@@ -15,7 +15,8 @@
     "casper-js-sdk": "^2.0.0",
     "esm": "^3.2.25",
     "lodash": "^4.17.21",
-    "sleep": "^6.3.0"
+    "sleep": "^6.3.0",
+    "ipfs-http-client": "50.1.2"
   },
   "scripts": {
     "auction-exec-bid-add": "node -r esm -e 'require(\"./contracts/js/auction/exec_bid_add.js\")'",
@@ -30,6 +31,7 @@
     "erc20-view-balances": "node -r esm -e 'require(\"./contracts/js/erc20/view_balances.js\")'",
     "erc20-view-details": "node -r esm -e 'require(\"./contracts/js/erc20/view_details.js\")'",
     "transfer-exec-native": "node -r esm -e 'require(\"./contracts/js/transfers/exec_native.js\")'",
-    "transfer-create-account": "node -r esm -e 'require(\"./contracts/js/transfers/create_account.js\")'"
+    "transfer-create-account": "node -r esm -e 'require(\"./contracts/js/transfers/create_account.js\")'",
+    "ipfs-demo": "node -r esm -e 'require(\"./ipfs/export-data/export.js\")'"
   }
 }

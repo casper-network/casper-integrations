@@ -1,0 +1,1 @@
+export const IPFS_ENTRY_NODE = process.env.CSPR_IPFS_ENTRY_NODE || `/ip4/0.0.0.0/tcp/5001`;
