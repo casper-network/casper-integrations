@@ -143,7 +143,7 @@ export const getStateKeyValue = async (client, stateRootHash, stateKey, statePat
     // Chain query: get global state key value. 
     const { 
         CLValue: { 
-            parsed: value 
+            data: value 
         } 
     } = await client.nodeClient.getBlockState(
         stateRootHash,
