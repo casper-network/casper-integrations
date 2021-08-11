@@ -35,12 +35,12 @@ const AMOUNT_TO_TRANSFER = 100000;
     // Step 5: Invoke contract transfer_from endpoint.
     const deployHashes = [];
     const userKeyPairSet = utils.getKeyPairOfUserSet(constants.PATH_TO_USERS);
-    for (const [userID, userKeyPair] of _.drop(userKeyPairSet).entries()) {
+    for (const [userID, userKeyPair] of userKeyPairSet.entries()) {
 
         // Step 5.1: Set deploy.
         let deploy = DeployUtil.makeDeploy(
             new DeployUtil.DeployParams(
-                keyPairOfContract.publicKey,
+                userKeyPair.publicKey,
                 constants.DEPLOY_CHAIN_NAME,
                 constants.DEPLOY_GAS_PRICE,
                 constants.DEPLOY_TTL_MS
@@ -50,7 +50,7 @@ const AMOUNT_TO_TRANSFER = 100000;
                 "transfer_from",
                 RuntimeArgs.fromMap({
                     amount: CLValueBuilder.u256(AMOUNT_TO_TRANSFER),
-                    owner: CLValueBuilder.byteArray(userKeyPairSet[0].accountHash()),
+                    owner: CLValueBuilder.byteArray(keyPairOfContract.accountHash()),
                     recipient: CLValueBuilder.byteArray(userKeyPair.accountHash())
                 })
             ),
@@ -58,7 +58,7 @@ const AMOUNT_TO_TRANSFER = 100000;
         );
 
         // Step 5.2: Sign deploy.
-        deploy = client.signDeploy(deploy, keyPairOfContract); 
+        deploy = client.signDeploy(deploy, userKeyPair); 
 
         // Step 5.3: Dispatch deploy to node.
         deployHashes.push(await client.putDeploy(deploy));

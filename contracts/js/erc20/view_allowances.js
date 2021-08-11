@@ -50,7 +50,7 @@ ERC-20 ${tokenSymbol} contract:
 ... contract hash = ${contractHash}
 ... contract to user account approvals:`);
     for (const userID of _.range(10)) {
-        console.log(`... ... user ${userID + 1}: ${approvalOfUsers[userID]}`)
+        console.log(`... Main User allows user ${userID + 1} to spend: ${approvalOfUsers[userID]}`)
     }
 };
 
