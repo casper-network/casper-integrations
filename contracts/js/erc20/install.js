@@ -79,7 +79,7 @@ contract constructor args:
 ... token supply = ${TOKEN_SUPPLY}
 ... token decimals = ${TOKEN_DECIMALS}
 contract installation details:
-... path = ${constants.PATH_TO_CONTRACT}
+... path = ${PATH_TO_CONTRACT}
 ... deploy hash = ${deployHash}
 ---------------------------------------------------------------------
     `);    

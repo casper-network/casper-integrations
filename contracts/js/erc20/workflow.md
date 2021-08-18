@@ -9,9 +9,6 @@ nctl-assets-setup && nctl-start
 # Step 0.2: Await for network to spinup.
 nctl-view-chain-state-root-hash
 
-# Step 0.3: Display accounts.
-ucase-1-view-accounts
-
 # ---------------------------------------------------------------------------
 # Step 01: Install Contract.
 # ---------------------------------------------------------------------------
