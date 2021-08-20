@@ -58,10 +58,12 @@ const AMOUNT_TO_TRANSFER = 100000;
         );
 
         // Step 5.2: Sign deploy.
-        deploy = client.signDeploy(deploy, userKeyPair); 
+        deploy = client.signDeploy(deploy, userKeyPair);
 
         // Step 5.3: Dispatch deploy to node.
         deployHashes.push(await client.putDeploy(deploy));
+
+        break;
     }
 
     // Step 6: Render details.

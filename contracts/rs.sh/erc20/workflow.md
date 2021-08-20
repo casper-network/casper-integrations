@@ -1,6 +1,6 @@
 ```
 # ---------------------------------------------------------------------------
-# Step 0: Spinup NCTL network.
+# Step 0: Spinup NCTL network & cd into casper-integrations root folder.
 # ---------------------------------------------------------------------------
 
 # Step 0.1: Launch local network.
@@ -9,43 +9,46 @@ nctl-assets-setup && nctl-start
 # Step 0.2: Await for network to spinup.
 nctl-view-chain-state-root-hash
 
+# Step 0.3: cd into casper-integrations root folder.
+cd YOUR_WORKING_DIRECTORY/casper-integrations
+
 # ---------------------------------------------------------------------------
 # Step 01: Install Contract.
 # ---------------------------------------------------------------------------
 
 # Step 1.0: Install smart contract.
-yarn erc20-install
+source ./contracts/rs.sh/erc20/install.sh contract=./contracts/rs.sh/erc20/erc20.wasm
 
 # Step 1.1: View on-chain details.
-yarn erc20-view-details
+source ./contracts/rs.sh/erc20/view_details.sh
 
 # ---------------------------------------------------------------------------
 # Step 02: Fund users with ERC-20 tokens.
 # ---------------------------------------------------------------------------
 
 # Step 2.0: Fund users.
-yarn erc20-exec-transfer
+source ./contracts/rs.sh/erc20/exec_transfer.sh
 
 # Step 2.1: View on-chain erc-20 token balances.
-yarn erc20-view-balances
+source ./contracts/rs.sh/erc20/view_balances.sh
 
 # ---------------------------------------------------------------------------
 # Step 03: Approve user ERC-20 transfers.
 # ---------------------------------------------------------------------------
 
 # Step 3.0: Approve user-to-user transfers.
-yarn erc20-exec-approve
+source ./contracts/rs.sh/erc20/exec_approve.sh
 
 # Step 3.1: View user token allowances.
-yarn erc20-view-allowances
+source ./contracts/rs.sh/erc20/view_allowances.sh
 
 # ---------------------------------------------------------------------------
 # Step 04: Set associated keys / action thresholds.
 # ---------------------------------------------------------------------------
 
 # Step 4.0: Transfer tokens from user 1 to other users.
-yarn erc20-exec-transfer-from
+source ./contracts/rs.sh/erc20/exec_transfer_from.sh
 
 # Step 4.1: View updated balances.
-yarn erc20-view-balances
+source ./contracts/rs.sh/erc20/view_balances.sh
 ```
