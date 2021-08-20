@@ -90,7 +90,7 @@ function _get_contract_hash()
 {
     local ACCOUNT_KEY=${1}
 
-    $CASPER_CLIENT query-state \
+    $CASPER_CLIENT query-global-state \
         --node-address "$_DEPLOY_NODE_ADDRESS" \
         --state-root-hash "$(get_state_root_hash)" \
         --key "$ACCOUNT_KEY" \

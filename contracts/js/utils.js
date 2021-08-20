@@ -140,6 +140,10 @@ export const getKeyPairOfUserSet = (pathToUsers) => {
  * @return {Object} On-chain account information.
  */
 export const getStateKeyValue = async (client, stateRootHash, stateKey, statePath) => {
+    console.log(stateRootHash);
+    console.log(stateKey);
+    console.log(statePath);
+
     // Chain query: get global state key value. 
     const { 
         CLValue: { 
