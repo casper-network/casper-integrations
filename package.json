@@ -12,7 +12,7 @@
   },
   "homepage": "https://github.com/casper-network/casper-integrations#readme",
   "dependencies": {
-    "casper-js-sdk": "^2.0.0",
+    "casper-js-sdk": "2.0.0",
     "esm": "^3.2.25",
     "lodash": "^4.17.21",
     "sleep": "^6.3.0",
