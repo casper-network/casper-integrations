@@ -36,7 +36,6 @@ const AMOUNT_TO_TRANSFER = 100000;
     const deployHashes = [];
     const userKeyPairSet = utils.getKeyPairOfUserSet(constants.PATH_TO_USERS);
     for (const [userID, userKeyPair] of userKeyPairSet.entries()) {
-
         // Step 5.1: Set deploy.
         let deploy = DeployUtil.makeDeploy(
             new DeployUtil.DeployParams(
@@ -62,8 +61,6 @@ const AMOUNT_TO_TRANSFER = 100000;
 
         // Step 5.3: Dispatch deploy to node.
         deployHashes.push(await client.putDeploy(deploy));
-
-        break;
     }
 
     // Step 6: Render details.

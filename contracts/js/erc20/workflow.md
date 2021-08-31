@@ -40,7 +40,7 @@ yarn erc20-exec-approve
 yarn erc20-view-allowances
 
 # ---------------------------------------------------------------------------
-# Step 04: Set associated keys / action thresholds.
+# Step 04: Peer-to-peer transfers.
 # ---------------------------------------------------------------------------
 
 # Step 4.0: Transfer tokens from user 1 to other users.
