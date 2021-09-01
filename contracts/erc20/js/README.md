@@ -44,7 +44,7 @@ yarn init
 Workflow
 --------------------------------------
 
-The below workflow must be run from the casper-integrations root folder.  
+The below workflow **must** be run from the casper-integrations root folder.  
 
 ```
 # ---------------------------------------------------------------------------
