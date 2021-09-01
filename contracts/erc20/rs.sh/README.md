@@ -4,7 +4,7 @@ Rust CLI ERC20 on CSPR demo
 Pre-Requisites 
 --------------------------------------
 
-0.  It is assumed that an [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl) network is up & running in your local environment.
+It is assumed that an [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl) network is up & running in your local environment.
 
 Workflow
 --------------------------------------
