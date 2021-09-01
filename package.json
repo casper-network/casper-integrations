@@ -1,7 +1,7 @@
 {
   "name": "casper-integrations",
   "version": "1.0.0",
-  "description": "casper-integrations ===============",
+  "description": "Various technical assets in support of CSPR node integrations.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/casper-network/casper-integrations.git"
