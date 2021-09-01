@@ -6,7 +6,7 @@ The [ERC20 standard](https://eips.ethereum.org/EIPS/eip-20) supports various cap
 Pre-Requisites 
 --------------------------------------
 
-0.  It is assumed that an [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl) network is up & running in your local environment.
+It is assumed that an [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl) network is up & running in your local environment.
 
 Javascript Demo 
 --------------------------------------
