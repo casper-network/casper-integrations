@@ -30,38 +30,38 @@ cd YOUR_WORKING_DIRECTORY/casper-integrations
 # ---------------------------------------------------------------------------
 
 # Step 1.0: Install smart contract.
-source ./contracts/rs.sh/erc20/install.sh contract=./contracts/rs.sh/erc20/erc20.wasm
+source ./contracts/erc20/rs.sh/install.sh contract=./contracts/erc20/rs.sh/erc20.wasm
 
 # Step 1.1: View on-chain details.
-source ./contracts/rs.sh/erc20/view_details.sh
+source ./contracts/erc20/rs.sh/view_details.sh
 
 # ---------------------------------------------------------------------------
 # Step 02: Fund users with ERC-20 tokens.
 # ---------------------------------------------------------------------------
 
 # Step 2.0: Fund users.
-source ./contracts/rs.sh/erc20/exec_transfer.sh
+source ./contracts/erc20/rs.sh/exec_transfer.sh
 
 # Step 2.1: View on-chain erc-20 token balances.
-source ./contracts/rs.sh/erc20/view_balances.sh
+source ./contracts/erc20/rs.sh/view_balances.sh
 
 # ---------------------------------------------------------------------------
 # Step 03: Approve user ERC-20 transfers.
 # ---------------------------------------------------------------------------
 
 # Step 3.0: Approve user-to-user transfers.
-source ./contracts/rs.sh/erc20/exec_approve.sh
+source ./contracts/erc20/rs.sh/exec_approve.sh
 
 # Step 3.1: View user token allowances.
-source ./contracts/rs.sh/erc20/view_allowances.sh
+source ./contracts/erc20/rs.sh/view_allowances.sh
 
 # ---------------------------------------------------------------------------
 # Step 04: Set associated keys / action thresholds.
 # ---------------------------------------------------------------------------
 
 # Step 4.0: Transfer tokens from user 1 to other users.
-source ./contracts/rs.sh/erc20/exec_transfer_from.sh
+source ./contracts/erc20/rs.sh/exec_transfer_from.sh
 
 # Step 4.1: View updated balances.
-source ./contracts/rs.sh/erc20/view_balances.sh
+source ./contracts/erc20/rs.sh/view_balances.sh
 ```
