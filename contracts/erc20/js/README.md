@@ -41,7 +41,7 @@ cd casper-integrations
 yarn init
 ```
 
-Demo Workflow
+Workflow
 --------------------------------------
 
 The below workflow must be run from the casper-integrations root folder.  
