@@ -1,4 +1,4 @@
-Javascript erc20 demo
+Javascript ERC20 on CSPR demo
 ===============
 
 Pre-Requisites 
