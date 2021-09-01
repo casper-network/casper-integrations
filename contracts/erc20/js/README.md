@@ -15,17 +15,17 @@ Pre-Requisites
 2.  To install the above on a fresh Linux Debian box:
 
 ```
-# Install node + npm
+# Install node + npm.
 sudo apt update
 sudo apt install nodejs npm
 
-# Update node + npm to latest
+# Update node + npm to latest.
 npm cache clean -f
 npm install -g n
 n stable
 npm install npm -g
 
-# Install yarn
+# Install yarn.
 npm install -g yarn
 ```
 
