@@ -23,13 +23,15 @@
     "auction-exec-bid-withdraw": "node -r esm -e 'require(\"./contracts/js/auction/exec_bid_withdraw.js\")'",
     "auction-exec-delegate": "node -r esm -e 'require(\"./contracts/js/auction/exec_delegate.js\")'",
     "auction-exec-undelegate": "node -r esm -e 'require(\"./contracts/js/auction/exec_undelegate.js\")'",
-    "erc20-exec-approve": "node -r esm -e 'require(\"./contracts/js/erc20/exec_approve.js\")'",
-    "erc20-exec-transfer": "node -r esm -e 'require(\"./contracts/js/erc20/exec_transfer.js\")'",
-    "erc20-exec-transfer-from": "node -r esm -e 'require(\"./contracts/js/erc20/exec_transfer_from.js\")'",
-    "erc20-install": "node -r esm -e 'require(\"./contracts/js/erc20/install.js\")'",
-    "erc20-view-allowances": "node -r esm -e 'require(\"./contracts/js/erc20/view_allowances.js\")'",
-    "erc20-view-balances": "node -r esm -e 'require(\"./contracts/js/erc20/view_balances.js\")'",
-    "erc20-view-details": "node -r esm -e 'require(\"./contracts/js/erc20/view_details.js\")'",
+
+    "erc20-exec-approve": "node -r esm -e 'require(\"./contracts/erc20/js/exec_approve.js\")'",
+    "erc20-exec-transfer": "node -r esm -e 'require(\"./contracts/erc20/js/exec_transfer.js\")'",
+    "erc20-exec-transfer-from": "node -r esm -e 'require(\"./contracts/erc20/js/exec_transfer_from.js\")'",
+    "erc20-install": "node -r esm -e 'require(\"./contracts/erc20/js/install.js\")'",
+    "erc20-view-allowances": "node -r esm -e 'require(\"./contracts/erc20/js/view_allowances.js\")'",
+    "erc20-view-balances": "node -r esm -e 'require(\"./contracts/erc20/js/view_balances.js\")'",
+    "erc20-view-details": "node -r esm -e 'require(\"./contracts/erc20/js/view_details.js\")'",
+    
     "transfer-exec-native": "node -r esm -e 'require(\"./contracts/js/transfers/exec_native.js\")'",
     "transfer-create-account": "node -r esm -e 'require(\"./contracts/js/transfers/create_account.js\")'",
     "ipfs-demo": "node -r esm -e 'require(\"./ipfs/export-data/export.js\")'"

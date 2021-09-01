@@ -8,11 +8,11 @@ import {
     DeployUtil,
     RuntimeArgs,
 } from 'casper-js-sdk';
-import * as constants from '../constants';
-import * as utils from '../utils';
+import * as constants from './utils_constants';
+import * as utils from './utils';
 
 // Path to contract to be installed.
-const PATH_TO_CONTRACT = `${process.env.NCTL}/assets/net-1/bin/eco/erc721.wasm`;
+const PATH_TO_CONTRACT = constants.PATH_TO_CONTRACT_ERC_20;
 
 // Token parameters.
 const TOKEN_NAME = "Acme Token";
@@ -79,7 +79,7 @@ contract constructor args:
 ... token supply = ${TOKEN_SUPPLY}
 ... token decimals = ${TOKEN_DECIMALS}
 contract installation details:
-... path = ${constants.PATH_TO_CONTRACT}
+... path = ${PATH_TO_CONTRACT}
 ... deploy hash = ${deployHash}
 ---------------------------------------------------------------------
     `);    
