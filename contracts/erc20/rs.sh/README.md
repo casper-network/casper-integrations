@@ -1,4 +1,4 @@
-Javascript ERC20 on CSPR demo
+Rust CLI ERC20 on CSPR demo
 ===============
 
 Pre-Requisites 
