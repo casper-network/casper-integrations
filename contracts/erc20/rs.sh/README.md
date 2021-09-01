@@ -30,7 +30,7 @@ cd YOUR_WORKING_DIRECTORY/casper-integrations
 # ---------------------------------------------------------------------------
 
 # Step 1.0: Install smart contract.
-source ./contracts/erc20/rs.sh/install.sh contract=./contracts/erc20/rs.sh/erc20.wasm
+source ./contracts/erc20/rs.sh/install.sh contract=./contracts/erc20/erc20.wasm
 
 # Step 1.1: View on-chain details.
 source ./contracts/erc20/rs.sh/view_details.sh
