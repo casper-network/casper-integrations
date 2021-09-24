@@ -17,3 +17,8 @@ Rust CLI Demo
 --------------------------------------
 
 Please [refer here](rs.sh/README.md) for instructions.
+
+Python CLI Demo 
+--------------------------------------
+
+Please [refer here](py/README.md) for instructions.
