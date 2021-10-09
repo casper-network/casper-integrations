@@ -1,6 +1,4 @@
-package com.casper.sdk.integrations;
-
-import com.casper.sdk.controller.CasperSdk;
+import com.casper.sdk.CasperSdk;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.logging.Level;
@@ -20,7 +18,7 @@ public class DeployInfo {
 
     public static void main(String[] args) {
 
-        CasperSdk casperSdk = new CasperSdk("http://3.136.227.9", "7777");
+        CasperSdk casperSdk = new CasperSdk("http://3.136.227.9", 7777);
 
         try {
             String deployInfo = casperSdk.getDeployInfo(DEPLOY_HASH);

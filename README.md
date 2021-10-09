@@ -62,14 +62,14 @@ How to run Java examples ?
 --------------------------------------
 
 1.  Pre-Requisites:
- - JDK 13 : Please ensure JDK 13 is installed and configured. JAVA_HOME environment variable should be pointing to the JDK 13 installation.
- - Casper Java SDK Fat Jar: Clone the [Casper Java SDK Repository](https://github.com/cnorburn/casper-java-sdk.git) and build the fat jar
+ - Min JDK 1.8 : Please ensure at a minimum JDK 1.8 is installed and configured. JAVA_HOME environment variable should be pointing to the JDK 1.8 (or greater) installation.
+ - Casper Java SDK Fat Jar: Clone the [Casper Java SDK Repository](https://github.com/casper-network/casper-java-sdk.git) and build the fat jar
 
     ```shell
     cd casper-java-sdk
-    ./gradlew casperFatJar
+    mvnw clean package
     ```
-NOTE - For windows use `gradlew.bat` instead of `gradlew`. The fat jar includes Casper Java SDK as well as all the required dependencies.
+NOTE - The fat jar includes Casper Java SDK as well as all the required dependencies. After successful execution of the above command, it can be found in the `target` directory by the name of `casper-java-sdk-<ver>-jar-with-dependencies.jar`.
 
 2.  Import environment variables:
 

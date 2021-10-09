@@ -1,4 +1,4 @@
-import com.casper.sdk.controller.CasperSdk;
+import com.casper.sdk.CasperSdk;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.logging.Level;
@@ -16,10 +16,10 @@ public class BlockInfo {
 
     public static void main(String[] args) {
 
-        CasperSdk casperSdk = new CasperSdk("http://3.136.227.9", "7777");
+        CasperSdk casperSdk = new CasperSdk("http://3.136.227.9", 7777);
 
         try {
-            String block = casperSdk.getBlock();
+            String block = casperSdk.getBlockInfo();
             LOGGER.log(Level.INFO, BlockInfo.prettyPrintJson(block));
         } catch ( Throwable exp ){
             LOGGER.log(Level.SEVERE, "Exception while fetching block information", exp);
