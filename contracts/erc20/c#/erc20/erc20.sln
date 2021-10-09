@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "erc20", "erc20.csproj", "{C7D0D2A6-4E8C-4796-B1CA-FA9F18F8F9A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7D0D2A6-4E8C-4796-B1CA-FA9F18F8F9A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7D0D2A6-4E8C-4796-B1CA-FA9F18F8F9A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7D0D2A6-4E8C-4796-B1CA-FA9F18F8F9A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D0D2A6-4E8C-4796-B1CA-FA9F18F8F9A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3CDC9F7C-032A-4DC2-B63E-42A144DF2072}
+	EndGlobalSection
+EndGlobal

@@ -28,3 +28,6 @@ use-cases/ucase-1-document-notarisation/tmp
 
 # Custom environments.
 envs
+/contracts/erc20/c#/erc20/obj
+/contracts/erc20/c#/erc20/bin
+/contracts/erc20/c#/erc20/.vs
