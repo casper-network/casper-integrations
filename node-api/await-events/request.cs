@@ -196,6 +196,9 @@ namespace CasperIntegrations
 
         public static async Task Main(string[] args)
         {
+            if(args.Length==0)
+                Console.WriteLine("Usage: dotnet run <await action> [n]");
+            
             if (args[0] == "DeployAccepted")
                 ListenDeployAcceptedEvents();
 
