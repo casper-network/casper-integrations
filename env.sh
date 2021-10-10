@@ -30,3 +30,9 @@ export CSPR_INTS_DEPLOY_NODE_ADDRESS="http://localhost:11101/rpc"
 
 # Time interval in milliseconds after which deploy will not be processed by a node.
 export CSPR_INTS_DEPLOY_TTL_MS=1800000
+
+# Location of the casper java sdk fat jar
+export CSPR_JAVA_FAT_JAR=casper-java-sdk-0.2.1-jar-with-dependencies.jar
+
+# Java command with classpath
+export RUN_JAVA="java -cp $CSPR_JAVA_FAT_JAR"
