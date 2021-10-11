@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NetCasperSDK;
 using NetCasperSDK.JsonRpc;
 using NetCasperSDK.Types;
+using NetCasperSDK.Utils;
 
 namespace CasperIntegrations
 {
@@ -51,7 +52,7 @@ namespace CasperIntegrations
 
                 // extract the deploy hash and use it to wait (up to 2mins) for the execution results
                 //
-                var deployHash = response.Result.GetProperty("deploy_hash").GetString();
+                var deployHash = response.GetDeployHash();
                 
                 var tokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(120));
                 await casperSdk.GetDeploy(deployHash, tokenSource.Token);
