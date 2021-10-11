@@ -57,3 +57,24 @@ node YOUR_WORKING_DIRECTORY/casper-integrations/node-api/<example-name>/request.
 ```
 node YOUR_WORKING_DIRECTORY/casper-integrations/contracts/erc20/<script-name>.js
 ```
+
+How to run C# examples with NetCasperSDK ?
+------------------------------------------
+
+The `node-api` folder contains different examples for communicating with a Casper node. Most of the examples run against a node in the testnet. 
+
+For the examples with a transfer deploy you will need a secret key. The examples use the faucet account in a local node. Learn to install a local node [here](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-nctl.html).
+
+1.  Setup:
+
+Install .NET 5.0 or higher. 
+
+2.  Run `node-api` example:
+
+Go to one of the examples directory, and run:
+
+```
+dotnet run
+```
+
+If the default casper node is not available, edit the `request.cs` file and replace the url with another's node address.

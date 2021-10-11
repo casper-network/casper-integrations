@@ -1,0 +1,4 @@
+# -----------------------------------------------------------
+# Retrieve Server-Sent events over REST endpoint.
+# -----------------------------------------------------------
+curl --location --request GET 'http://3.136.227.9:9999/events/main?start_from=0'
