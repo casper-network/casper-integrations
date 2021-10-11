@@ -71,8 +71,10 @@ Install .NET 5.0 or higher.
 
 2.  Run `node-api` example:
 
-Go to the example directory, modify the address node, if needed, in the `request.cs` file and run:
+Go to one of the examples directory, and run:
 
 ```
 dotnet run
 ```
+
+If the default casper node is not available, edit the `request.cs` file and replace the url with another's node address.
