@@ -1,35 +1,24 @@
 package main
 
 import (
-        "fmt"
-        "net/http"
-        "io/ioutil"
+	"fmt"
+	"github.com/casper-ecosystem/casper-golang-sdk/sdk"
 )
 
 func main() {
 
-        url := "%7B%7BN1_ADDRESS_REST%7D%7D/metrics"
-        method := "GET"
+	url := "http://3.136.227.9:7777/rpc"
 
-        client := &http.Client {
-        }
-        req, err := http.NewRequest(method, url, nil)
+	client, err := sdk.NewRpcClient(url)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	metrics, err := client.GetMetrics()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
-        if err != nil {
-                fmt.Println(err)
-                return
-        }
-        res, err := client.Do(req)
-        if err != nil {
-                fmt.Println(err)
-                return
-        }
-        defer res.Body.Close()
-
-        body, err := ioutil.ReadAll(res.Body)
-        if err != nil {
-                fmt.Println(err)
-                return
-        }
-        fmt.Println(string(body))
+	fmt.Println(metrics)
 }

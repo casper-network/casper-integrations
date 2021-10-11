@@ -1,45 +1,25 @@
 package main
 
 import (
-        "fmt"
-        "strings"
-        "net/http"
-        "io/ioutil"
+	"fmt"
+	"github.com/casper-ecosystem/casper-golang-sdk/sdk"
 )
 
 func main() {
 
-        url := "http://3.136.227.9:7777/rpc"
-        method := "POST"
+	url := "http://3.136.227.9:7777/rpc"
+	deployHash := "6c4048f8ebd40a160e9df47e73680eda8ae8430309a9566655bb357a5967276b"
 
-        payload := strings.NewReader(`{
-    "id": 1,
-    "jsonrpc": "2.0",
-    "method": "info_get_deploy",
-    "params": {
-        "deploy_hash": "6c4048f8ebd40a160e9df47e73680eda8ae8430309a9566655bb357a5967276b"
-    }
-}`)
+	client, err := sdk.NewRpcClient(url)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	deploy, err := client.GetDeploy(deployHash)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
-        client := &http.Client {
-        }
-        req, err := http.NewRequest(method, url, payload)
-
-        if err != nil {
-                fmt.Println(err)
-                return
-        }
-        res, err := client.Do(req)
-        if err != nil {
-                fmt.Println(err)
-                return
-        }
-        defer res.Body.Close()
-
-        body, err := ioutil.ReadAll(res.Body)
-        if err != nil {
-                fmt.Println(err)
-                return
-        }
-        fmt.Println(string(body))
+	fmt.Println(deploy)
 }
