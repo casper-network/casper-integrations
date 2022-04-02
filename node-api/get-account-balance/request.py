@@ -11,8 +11,8 @@ _NODE_ADDRESS: str = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
 # A known account public key.
 _ACCOUNT_KEY: bytes = bytes.fromhex("01cb99ab80325d73552c7c0b8d10d8cb2d19116b1f233431751fe82f9c25db51c1")
 
-# Account hash mapped from account key.
-_ACCOUNT_HASH: bytes = pycspr.get_account_hash(_ACCOUNT_KEY)
+# A known block hash.
+_BLOCK_HASH: bytes = bytes.fromhex("c7148e1e2e115d8fba357e04be2073d721847c982dc70d5c36b5f6d3cf66331c")
 
 # A known state of the linear block chain at which to query.
 _STATE_ROOT_HASH: bytes = bytes.fromhex("33e257bc70f7094d030a18f8aede3d58d8e202fb946810ce3292625fe853b636")
@@ -23,13 +23,13 @@ def main():
     
     """
     # Set client.
-    client = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
+    client = pycspr.NodeClient(pycspr.NodeConnection(host=_NODE_ADDRESS))
 
     # Set purse.
-    purse_id = client.queries.get_account_main_purse_uref(_ACCOUNT_KEY, _STATE_ROOT_HASH)
+    purse_id = client.get_account_main_purse_uref(_ACCOUNT_KEY, _BLOCK_HASH)
 
     # Set balance.
-    balance_motes = client.queries.get_account_balance(purse_id, _STATE_ROOT_HASH)
+    balance_motes = client.get_account_balance(purse_id, _STATE_ROOT_HASH)
 
     print("-----------------------------------------------------------------------------------------------------")
     print(f"QUERIED TEST-NET NODE {_NODE_ADDRESS} @ {_STATE_ROOT_HASH.hex()}")

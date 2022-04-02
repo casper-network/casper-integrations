@@ -20,16 +20,16 @@ def main():
     
     """
     # Set client.
-    client = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
+    client = pycspr.NodeClient(pycspr.NodeConnection(host=_NODE_ADDRESS))
 
     # Set state root hash - latest.
-    state_root_hash_1: bytes = client.queries.get_state_root_hash()
+    state_root_hash_1: bytes = client.get_state_root_hash()
 
     # Set state root hash - by known block hash.
-    state_root_hash_2: bytes = client.queries.get_state_root_hash(_BLOCK_HASH)
+    state_root_hash_2: bytes = client.get_state_root_hash(_BLOCK_HASH)
 
     # Set state root hash - by known block height.
-    state_root_hash_3: bytes = client.queries.get_state_root_hash(_BLOCK_HEIGHT)
+    state_root_hash_3: bytes = client.get_state_root_hash(_BLOCK_HEIGHT)
 
     # Verify.
     assert state_root_hash_1 != state_root_hash_2

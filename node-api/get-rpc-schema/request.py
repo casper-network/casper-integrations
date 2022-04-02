@@ -14,10 +14,10 @@ def main():
     
     """
     # Set client.
-    client = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
+    client = pycspr.NodeClient(pycspr.NodeConnection(host=_NODE_ADDRESS))
 
     # Get RPC schema.
-    schema: dict = client.queries.get_rpc_schema()
+    schema: dict = client.get_rpc_schema()
     
     print("-----------------------------------------------------------------------------------------------------")
     print(f"QUERIED TEST-NET NODE {_NODE_ADDRESS}")

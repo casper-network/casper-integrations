@@ -9,7 +9,7 @@ import pycspr
 _NODE_ADDRESS: str = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
 
 # A known deploy hash.
-_DEPLOY_HASH: bytes = bytes.fromhex("6c4048f8ebd40a160e9df47e73680eda8ae8430309a9566655bb357a5967276b")
+_DEPLOY_HASH: bytes = bytes.fromhex("72b903c076584af013fa9c0634135033cef0c83084a891f864f784280a6ec4e3")
 
 
 def main():
@@ -17,10 +17,10 @@ def main():
     
     """
     # Set client.
-    client = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
+    client = pycspr.NodeClient(pycspr.NodeConnection(host=_NODE_ADDRESS))
 
     # Set deploy by known hash.
-    deploy_info = client.queries.get_deploy(_DEPLOY_HASH)
+    deploy_info = client.get_deploy(_DEPLOY_HASH)
     
     print("-----------------------------------------------------------------------------------------------------")
     print(f"QUERIED TEST-NET NODE {_NODE_ADDRESS}")
