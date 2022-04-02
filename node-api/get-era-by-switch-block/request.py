@@ -6,13 +6,13 @@ import pycspr
 
 
 # A known casper test-net node address.
-_NODE_ADDRESS: str = os.getenv("CASPER_NODE_ADDRESS", "3.136.227.9")
+_NODE_ADDRESS: str = os.getenv("CASPER_NODE_ADDRESS", "109.238.11.77")
 
 # A known block hash.
-_BLOCK_HASH: bytes = bytes.fromhex("12284e9e6b1c440ee91d2803850a7b7ba5e4c029c6f4abeb8aa1eb743608ab73")
+_BLOCK_HASH: bytes = bytes.fromhex("9481c3fd1876a6183a48c96f963eb3a53569092fb0ff9bbc1293dea967b46061")
 
 # A known block height.
-_BLOCK_HEIGHT: int = 505
+_BLOCK_HEIGHT: int = 621958
 
 
 
@@ -21,13 +21,13 @@ def main():
     
     """
     # Set client.
-    client = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
+    client = pycspr.NodeClient(pycspr.NodeConnection(host=_NODE_ADDRESS))
 
     # Set era by known hash.
-    era_info_1: dict = client.queries.get_era_info(_BLOCK_HASH)
+    era_info_1: dict = client.get_era_info(_BLOCK_HASH)
 
     # Set era by known height.
-    era_info_2: dict = client.queries.get_era_info(_BLOCK_HEIGHT)
+    era_info_2: dict = client.get_era_info(_BLOCK_HEIGHT)
 
     # Verify era information equivalence.
     assert era_info_1 == era_info_2

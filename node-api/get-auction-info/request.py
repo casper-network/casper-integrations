@@ -20,16 +20,16 @@ def main():
     
     """
     # Set client.
-    client: pycspr.NodeClient = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
+    client: pycspr.NodeClient = pycspr.NodeClient(pycspr.NodeConnection(host=_NODE_ADDRESS))
 
     # Set auction info scoped by current era.
-    auction_info_1: dict = client.queries.get_auction_info()
+    auction_info_1: dict = client.get_auction_info()
 
     # Set auction info scoped by known hash.
-    auction_info_2: dict = client.queries.get_auction_info(_BLOCK_HASH)
+    auction_info_2: dict = client.get_auction_info(_BLOCK_HASH)
 
     # Set auction info scoped by known height.
-    auction_info_3: dict = client.queries.get_auction_info(_BLOCK_HEIGHT)
+    auction_info_3: dict = client.get_auction_info(_BLOCK_HEIGHT)
 
     # Verify.
     assert auction_info_1 != auction_info_2

@@ -14,22 +14,21 @@ _ACCOUNT_KEY: bytes = bytes.fromhex("01cb99ab80325d73552c7c0b8d10d8cb2d19116b1f2
 # Account hash mapped from account key.
 _ACCOUNT_HASH: bytes = pycspr.get_account_hash(_ACCOUNT_KEY)
 
-# A known state of the linear block chain at which to query.
-_STATE_ROOT_HASH: bytes = bytes.fromhex("33e257bc70f7094d030a18f8aede3d58d8e202fb946810ce3292625fe853b636")
-
+# A known block hash.
+_BLOCK_HASH: bytes = bytes.fromhex("c7148e1e2e115d8fba357e04be2073d721847c982dc70d5c36b5f6d3cf66331c")
 
 def main():
     """Retrieves on-chain account information.
     
     """
     # Set client.
-    client = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
+    client = pycspr.NodeClient(pycspr.NodeConnection(host=_NODE_ADDRESS))
 
     # Set account information by account key.
-    account_info: dict = client.queries.get_account_info(_ACCOUNT_HASH, _STATE_ROOT_HASH)   
+    account_info: dict = client.get_account_info(_ACCOUNT_KEY, _BLOCK_HASH)   
 
     print("-----------------------------------------------------------------------------------------------------")
-    print(f"QUERIED TEST-NET NODE {_NODE_ADDRESS} @ {_STATE_ROOT_HASH.hex()}")
+    print(f"QUERIED TEST-NET NODE {_NODE_ADDRESS} @ {_BLOCK_HASH.hex()}")
     print("-----------------------------------------------------------------------------------------------------")
     print(f"A/C key = {_ACCOUNT_KEY.hex()}")
     print(f"A/C hash = {_ACCOUNT_HASH.hex()}")

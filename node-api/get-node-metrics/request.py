@@ -14,10 +14,10 @@ def main():
     
     """
     # Set client.
-    client = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
+    client = pycspr.NodeClient(pycspr.NodeConnection(host=_NODE_ADDRESS))
 
     # Get node metrics.
-    metrics: list = client.queries.get_node_metrics()
+    metrics: list = client.get_node_metrics()
     
     print("-----------------------------------------------------------------------------------------------------")
     print(f"QUERIED TEST-NET NODE {_NODE_ADDRESS}")

@@ -20,16 +20,16 @@ def main():
     
     """
     # Set client.
-    client = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
+    client = pycspr.NodeClient(pycspr.NodeConnection(host=_NODE_ADDRESS))
 
     # Set block - latest.
-    block_1: dict = client.queries.get_block()
+    block_1: dict = client.get_block()
     
     # Set block - by known hash.
-    block_2: dict = client.queries.get_block(_BLOCK_HASH)
+    block_2: dict = client.get_block(_BLOCK_HASH)
 
     # Set block - by known height.
-    block_3: dict = client.queries.get_block(_BLOCK_HEIGHT)
+    block_3: dict = client.get_block(_BLOCK_HEIGHT)
 
     # Verify block information equivalence.
     assert block_1 != block_2

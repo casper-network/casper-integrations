@@ -20,13 +20,13 @@ def main():
     
     """
     # Set client.
-    client = pycspr.NodeClient(pycspr.NodeConnectionInfo(host=_NODE_ADDRESS))
+    client = pycspr.NodeClient(pycspr.NodeConnection(host=_NODE_ADDRESS))
 
     # Set block by known hash.
-    block_transers_1: tuple = client.queries.get_block_transfers(_BLOCK_HASH)
+    block_transers_1: tuple = client.get_block_transfers(_BLOCK_HASH)
 
     # Set block by known height.
-    block_transers_2: tuple = client.queries.get_block_transfers(_BLOCK_HEIGHT)
+    block_transers_2: tuple = client.get_block_transfers(_BLOCK_HEIGHT)
 
     # Verify block information equivalence.
     assert block_transers_1 == block_transers_2
