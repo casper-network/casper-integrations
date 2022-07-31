@@ -18,7 +18,7 @@ The user's public key is mapped to a unique identifier known as the **Account Ha
 
 ## JSON-RPC
 
-The JSON-RPC API exposes the **state_get_item** endpoint - it can be sued to retrieve on-chain account information.  It accepts the following parameters:
+The JSON-RPC API exposes the **state_get_item** endpoint - it can be used to retrieve on-chain account information.  It accepts the following parameters:
 
 **key**
 
